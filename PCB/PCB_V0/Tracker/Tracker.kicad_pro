@@ -500,8 +500,12 @@
       "WIND"
     ],
     [
-      "e7b04797-728a-4be1-a4d7-bfb11d613e5a",
-      "SUN"
+      "450f5a22-2652-4024-a63f-4acb991a80b5",
+      "Motors"
+    ],
+    [
+      "9a9cee9e-b09b-4eb3-a522-35ab2aca519e",
+      "GNSS"
     ]
   ],
   "text_variables": {}

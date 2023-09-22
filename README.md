@@ -19,13 +19,13 @@ Ce projet a pour objectif de créer un tracker solaire qui ajuste automatiquemen
 ## Fonctionnalités
 
 - Suivi précis et automatique de la trajectoire du soleil pour maximiser la production d'énergie solaire.
-- Utilisation de capteurs de lumière pour déterminer la position actuelle du soleil.
-- Contrôle fluide des moteurs pour ajuster la position du panneau solaire en réponse aux changements de luminosité.
+- Utilisation d'un GPS et d'un module RTC pour déterminer la position actuelle du soleil.
+- Contrôle fluide des moteurs pour ajuster la position du panneau solaire 
 - Interface de communication pour surveiller et configurer les performances du tracker.
 
 ## Matériaux
 
-- Composants électroniques standard tels que microcontrôleurs, capteurs de lumière, moteurs pas à pas, etc.
+- Composants électroniques standard tels que microcontrôleurs, GPS, moteurs pas à pas, etc.
 - Carte de circuit imprimé spécialement conçue pour le tracker solaire.
 - Moteurs pas à pas robustes adaptés aux dimensions du panneau solaire.
 - Structure mécanique pour soutenir et orienter le panneau solaire.
