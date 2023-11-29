@@ -9,8 +9,6 @@ Ce projet vise à concevoir et construire un système de suivi solaire spéciale
 - [Fonctionnalités](#fonctionnalités)
 - [Matériaux](#matériaux)
 - [Schémas et Conception](#schémas-et-conception)
-- [Contribution](#contribution)
-
 
 ## Aperçu
 
@@ -27,16 +25,14 @@ Ce projet a pour objectif de créer un tracker solaire qui ajuste automatiquemen
 
 - Composants électroniques standard tels que microcontrôleurs, GPS, moteurs pas à pas, etc.
 - Carte de circuit imprimé spécialement conçue pour le tracker solaire.
+
+![Image de PCB](/Images/PCB.png "Une version du PCB)
+
 - Moteurs pas à pas robustes adaptés aux dimensions du panneau solaire.
 - Structure mécanique pour soutenir et orienter le panneau solaire.
 - Source d'alimentation adaptée aux moteurs et à l'électronique.
 
 ## Schémas et Conception
 
-Les schémas électriques détaillés et les plans de conception du circuit imprimé spécifique au tracker solaire sont disponibles dans le dossier `schémas`. 
-
-## Contribution
-
-Les contributions sont les bienvenues !
-
+Les schémas électriques détaillés et les plans de conception du circuit imprimé spécifique au tracker solaire sont disponibles dans le dossier `Hardware`. 
 

@@ -1,0 +1,18 @@
+//#RTC
+
+#define RTC_YEAR 2023
+#define RTC_MONTH 01
+#define RTC_DAY 01
+#define RTC_HOUR 00
+#define RTC_MIN 00
+#define RTC_SEC 00
+
+
+
+//#GPS
+
+#define GPS_LATITUDE_DEG 48
+#define GPS_LATITUDE_SEC 8583
+
+#define GPS_LONGITUDE_DEG 2
+#define GPS_LONGITUDE_SEC 2945
