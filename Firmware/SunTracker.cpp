@@ -2,6 +2,10 @@
 #include "SunTracker.h"
 
 
+SunTracker::SunTracker(CityLocalisation cityLocalisation) 
+{
+  this->_cityLocalisation = cityLocalisation;
+}
 
 inline float degToRad(float dgr)
 {
@@ -9,7 +13,7 @@ inline float degToRad(float dgr)
 }
 
 
-inline uint16_t convertDayInRank(uint16_t year, uint8_t month, uint8_t day) 
+uint16_t SunTracker::convertDayInRank(uint16_t year, uint8_t month, uint8_t day) 
 {
   uint8_t daysPerMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
@@ -37,10 +41,6 @@ inline uint16_t convertDayInRank(uint16_t year, uint8_t month, uint8_t day)
 }
 
 
-SunTracker::SunTracker(CityLocalisation cityLocalisation) 
-{
-  this->_cityLocalisation = cityLocalisation;
-}
 
 
 void SunTracker::setDebug(bool debugState) 

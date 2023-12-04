@@ -8,3 +8,9 @@
 #define RTC_CS
 #define RTC_DATA
 #define RTC_CLK
+
+
+ #define GNSS_RX 10
+ #define GNSS_TX  11
+
+
