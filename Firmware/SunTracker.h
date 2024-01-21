@@ -4,6 +4,7 @@
 #include "Arduino.h"
 
 #include "DateTime.h"
+#include "GNSS_Coordinates.h"
 
 /**
  * @brief 
@@ -18,10 +19,10 @@ typedef enum
 
 typedef struct 
 {
-  uint8_t latitudeDeg;
-  uint8_t latitudeMin;
-  uint8_t longitudeDeg;
-  uint8_t longitudeMin;
+  int latitudeDeg;
+  int latitudeMin;
+  int longitudeDeg;
+  int longitudeMin;
 
 } CityLocalisation;
 
@@ -39,6 +40,8 @@ class SunTracker
      * @param cityLocalisation 
      */
     SunTracker(CityLocalisation cityLocalisation);
+
+    void setLocalisation(GNSS_Coordinates gnss_coordinates);
 
     /**
      * @brief Set the Debug object

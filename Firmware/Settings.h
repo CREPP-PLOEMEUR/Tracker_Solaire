@@ -3,13 +3,13 @@
 
 //#GPS
 //default position
-#define GPS_LATITUDE_DEG 48
-#define GPS_LATITUDE_SEC 8583
-
+//#define GPS_LATITUDE_DEG 48
+//#define GPS_LATITUDE_SEC 8583
+/*
 #define GPS_LONGITUDE_DEG 2
 #define GPS_LONGITUDE_SEC 2945
 
-
+*/
 
 #define UART_BAUDRATE 38400
 

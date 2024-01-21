@@ -13,6 +13,27 @@ inline float degToRad(float dgr)
 }
 
 
+inline void decimalToDMS(float decimalDegrees, int& degrees, int& minutes) {
+  // Extraire la partie entière pour les degrés
+  degrees = int(decimalDegrees);
+
+  // Calculer la partie fractionnaire en minutes (multiplier par 60)
+  float decimalMinutes = (decimalDegrees - degrees) * 60.0;
+
+  // Arrondir à la valeur entière pour les minutes
+  minutes = int(decimalMinutes);
+}
+
+void SunTracker::setLocalisation(GNSS_Coordinates gnss_coordinates)
+{
+  int a;
+  int b;
+
+  decimalToDMS(gnss_coordinates.latitude, this->_cityLocalisation.latitudeDeg, this->_cityLocalisation.latitudeMin);
+  decimalToDMS(gnss_coordinates.longitude, this->_cityLocalisation.longitudeDeg, this->_cityLocalisation.longitudeMin);
+}
+
+
 uint16_t SunTracker::convertDayInRank(uint16_t year, uint8_t month, uint8_t day) 
 {
   uint8_t daysPerMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
