@@ -34,18 +34,18 @@ void SunTracker::setLocalisation(GNSS_Coordinates gnss_coordinates)
 }
 
 
-uint16_t SunTracker::convertDayInRank(uint16_t year, uint8_t month, uint8_t day) 
+uint16_t SunTracker::convertDayInRank(GNSS_Date gnss_date) 
 {
   uint8_t daysPerMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
   //Check every 4 years
-  if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) 
+  if ((gnss_date.year % 4 == 0 && gnss_date.year % 100 != 0) || (gnss_date.year % 400 == 0)) 
   {
     daysPerMonth[2] = 29; //february
   }
 
   //Checking months and day
-  if (month < 1 || month > 12 || day < 1 || day > daysPerMonth[month]) 
+  if (gnss_date.month < 1 || gnss_date.month > 12 || gnss_date.day < 1 || gnss_date.day > daysPerMonth[gnss_date.month]) 
   {
     return -1; //Invalide date
   }
@@ -53,10 +53,10 @@ uint16_t SunTracker::convertDayInRank(uint16_t year, uint8_t month, uint8_t day)
 
   //
   int rank = 0;
-  for (int i = 1; i < month; i++) {
+  for (int i = 1; i < gnss_date.month; i++) {
     rank += daysPerMonth[i];
   }
-  rank += day;
+  rank += gnss_date.day;
 
   return rank;
 }
@@ -108,14 +108,14 @@ float SunTracker::getEquationTime()
 /*!
  * Return TVS 
  */
-float SunTracker::getRealTime(DateTime datetime)
+float SunTracker::getRealTime(GNSS_Time gnss_time)
 {
 
   float minute = floor(this->_cityLocalisation.longitudeDeg)*4.0;
   float seconde = floor((this->_cityLocalisation.longitudeMin))*4.0;
   float offsetTime = minute+(seconde/60.0) + this->getEquationTime();
 
-  float tvs = datetime.hour + (datetime.minute/60.0) - this->_seasonHour + (offsetTime/60.0);
+  float tvs = gnss_time.hour + (gnss_time.minute/60.0) - this->_seasonHour + (offsetTime/60.0);
   if(this->_debugState)
   {
     Serial.println("Real Time = ="+String(tvs));
@@ -125,19 +125,19 @@ float SunTracker::getRealTime(DateTime datetime)
 }
 
 
-float SunTracker::getHourAngle(DateTime datetime)
+float SunTracker::getHourAngle(GNSS_Time gnss_time)
 {
-  return ((datetime.hour+(datetime.minute/60.0))-12.0)*15.0;
+  return ((gnss_time.hour+(gnss_time.minute/60.0))-12.0)*15.0;
 }
 
 
-float SunTracker::getElevation(DateTime datetime)
+float SunTracker::getElevation(GNSS_Time gnss_time)
 {
 
 
-  float time = this->getRealTime(datetime);
-  DateTime tmpDateTime = {floor(time), ((time-floor(time))*60.0)};
-  float hourAngle = this->getHourAngle(tmpDateTime);
+  float time = this->getRealTime(gnss_time);
+  GNSS_Time tmpGnssTime = {floor(time), ((time-floor(time))*60.0)};
+  float hourAngle = this->getHourAngle(tmpGnssTime);
 
 
   float a = sin(degToRad(this->_declination))*sin(degToRad(this->_cityLocalisation.latitudeDeg));
@@ -157,12 +157,12 @@ float SunTracker::getElevation(DateTime datetime)
                     
 }
 
-float SunTracker::getAzimut(DateTime datetime)
+float SunTracker::getAzimut(GNSS_Time gnss_time)
 {
 
-  float time = this->getRealTime(datetime);
-  DateTime tmpDateTime = {floor(time), ((time-floor(time))*60.0)};
-  float hourAngle = this->getHourAngle(tmpDateTime);
+  float time = this->getRealTime(gnss_time);
+  GNSS_Time tmpGnssTime = {floor(time), ((time-floor(time))*60.0)};
+  float hourAngle = this->getHourAngle(tmpGnssTime);
   
   float azimut = atan(sin(degToRad(hourAngle))/(sin(degToRad(this->_cityLocalisation.latitudeDeg))*cos(degToRad(hourAngle)) - cos(degToRad(this->_cityLocalisation.latitudeDeg)) * tan(degToRad(this->_declination))));
   
@@ -190,7 +190,7 @@ float SunTracker::getAzimut(DateTime datetime)
   
 }
 
-void SunTracker::update(uint16_t indexOfDay, DateTime datetime)
+void SunTracker::update(uint16_t indexOfDay, GNSS_Time gnss_time)
 {
 
   //Update 
@@ -207,8 +207,8 @@ void SunTracker::update(uint16_t indexOfDay, DateTime datetime)
   }
 
   this->_declination = this->getDeclination();
-  this->elevation = this->getElevation(datetime);
-  this->azimut = this->getAzimut(datetime);
+  this->elevation = this->getElevation(gnss_time);
+  this->azimut = this->getAzimut(gnss_time);
   
 
     Serial.print("("+String(this->azimut));
@@ -226,8 +226,8 @@ void SunTracker::debug(uint16_t rank)
   for(float i=0.0;i<24.0;i++)
   {
 
-    DateTime tmpDateTime = {i, 0.0};
-    this->update(rank, tmpDateTime);
+    GNSS_Time tmpGnssTime = {i, 0.0};
+    this->update(rank, tmpGnssTime);
   }
   Serial.println("};");
   

@@ -55,26 +55,35 @@ void loop() {
   gnss.readData();
 
 
-  static bool passed = false;
-
- // gnss.displayInformations();
-
   if(gnss.isValidPosition())
   {
     
     //Serial.println("COORDINATES FOUND !");
-/*
+
     Serial.println(gnss.getCoordinates().latitude,5);
     Serial.println(gnss.getCoordinates().longitude,5);
     //Serial.println(gnss.getDate().day);
     Serial.println(String(gnss.getTime().hour)+":"+String(gnss.getTime().minute));
-/*
+
     sunTracker.setLocalisation(gnss.getCoordinates());
 
-    sunTracker.update(31, {10,00});
-    sunTracker.update(31, {14,00});
-    sunTracker.update(31, {17,00});
-*/
+
+
+    sunTracker.update(sunTracker.convertDayInRank(gnss.getDate()), {gnss.getTime().hour,gnss.getTime().minute});
+
+    for(int a=0;a<24;a++)
+    {
+      Serial.println(sunTracker.getElevation({a,0}));
+    }
+
+  Serial.println("#######################");
+    sunTracker.update(sunTracker.convertDayInRank({21,12,24}), {gnss.getTime().hour,gnss.getTime().minute});
+
+    for(int a=0;a<24;a++)
+    {
+      Serial.println(sunTracker.getElevation({a,0}));
+    }
+
     gnss.displayInformations();
 
     //Serial.println(sunTracker.getAzimut());

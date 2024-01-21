@@ -5,6 +5,7 @@
 
 #include "DateTime.h"
 #include "GNSS_Coordinates.h"
+#include "GNSS_Time.h"
 
 /**
  * @brief 
@@ -56,12 +57,18 @@ class SunTracker
      * @param indexOfDay 
      * @param datetime 
      */
-    void update(uint16_t indexOfDay, DateTime datetime);
+    void update(uint16_t indexOfDay, GNSS_Time gnss_time);
 
     void debug(uint16_t rank);
 
 
-    uint16_t convertDayInRank(uint16_t year, uint8_t month, uint8_t day) ;
+    uint16_t convertDayInRank(GNSS_Date gnss_date) ;
+
+
+
+    float getElevation(GNSS_Time gnss_time);
+    float getAzimut(GNSS_Time gnss_time);
+    
 
 
     float elevation = 0.0;
@@ -79,14 +86,12 @@ class SunTracker
 
     SeasonHour _seasonHour = SeasonHour::WinterHour;
     
-    
+
     float getDeclination();
-    float getHourAngle(DateTime datetime);
-    float getRealTime(DateTime datetime);
+    float getHourAngle(GNSS_Time gnss_time);
+    float getRealTime(GNSS_Time gnss_time);
     float getEquationTime();
-    float getElevation(DateTime datetime);
-    float getAzimut(DateTime datetime);
-    
+
     
     
 };
