@@ -1,6 +1,6 @@
 /**
  * @file GNSS.h
- * @author 
+ * @author Nicolas Le Guerroue
  * @brief 
  * @version 1.0
  * @date 
@@ -12,13 +12,9 @@
 #include "DateTime.h"
 #include "NMEA.h"
 
+/*!
 
-
-
-
-
-
-
+*/
 #define GNSS_NETWORK 5
 #define GNSS_TYPE_ANSWER 5
 
@@ -32,12 +28,22 @@
 #define GNSS_DEFAULT_TX_GNSS 9
 
 #define GNSS_DEFAULT_DEBUG_STATE true
+/*!
+4745.57702 = 47 + 45*0.57702*60 = 45°42'34.6212"
+0329.76825 = 3°29'46.095
 
+47.759617, -3.4961375
+47.75962, -3.4961375
+
+*/
 
 
 #define NMEA_GPGGA_EXAMPLE "GPGGA,130000.00,4745.57754,N,00329.76917,W,1,07,1.20,14.0,M,49A,3,23,17,05,15,24,13,22,,,,,,2.18,1.20,1.82*03"
 #define NMEA_GPGSV_EXAMPLE "GPGSV,4,1,13,05,29,191,31,10,03,330,,12,00,200,,13,66,101,18*78,,15,73,289,21,17,12,098,30,18,07,273,*7E"
 #define NMEA_GPRMC_EXAMPLE "GPRMC,130000.00,A,4745.57702,N,00329.76825,W,1.417,,031223,,,A*61"
+
+// 47°45'34.6"N 3°29'46.1"W
+//47.759617,-3.496137
 
 #define GPS_LATITUDE_DEG 47
 #define GPS_LATITUDE_SEC 75958
@@ -89,8 +95,10 @@ class GNSS
      */
     void setDebugState(GNSS_DebugState debugState);
 
-
+    
     void startSelfTest(void);
+
+    
     bool isReady(void);
     const char* getStatus();
 
@@ -118,9 +126,11 @@ class GNSS
     typedef struct 
     {
       uint8_t latitudeDegree;
+      float latitudeMinute;
       char latitudeDirection;
 
       uint8_t longitudeDegree;
+      float longitudeMinute;
       char LongitudeDirection;
 
     } Coordinates;

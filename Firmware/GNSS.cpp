@@ -1,8 +1,5 @@
 #include "GNSS.h"
 
-//CityLocalisation city_example = {GPS_LATITUDE_DEG,GPS_LATITUDE_SEC, GPS_LONGITUDE_DEG, GPS_LONGITUDE_SEC};
-
-
 static NMEA_MessageType nmea_messageTypes[NMEA_MESSAGE_TYPE_NUMBER] = 
 {
     NMEA_MessageType{"GGA"},
@@ -22,7 +19,6 @@ static NMEA_Source nmea_sources[NMEA_SOURCE_NUMBER] =
     NMEA_Source{"GB", "BEIDOU"},
     NMEA_Source{"GN", "GNSS - Mix"}
 };
-
 
 
 GNSS::GNSS(GNSS_Pin_Rx rx_Pin, GNSS_Pin_Tx tx_Pin, GNSS_Baudrate gnss_baudrate) : _rx_Pin{rx_Pin}, _tx_Pin{tx_Pin}, _gnss_baudrate{gnss_baudrate}
@@ -199,11 +195,42 @@ void GNSS::parseString(NMEA_Frame data)
   else if(m_gnss_data.messageType.name == nmea_messageTypes[4].name) //RMC
   {
     _uartDebug->println("RMC");
-    m_gnss_data.coordinates.latitudeDirection = this->extractField(data, 4)[0];
-    m_gnss_data.coordinates.LongitudeDirection = this->extractField(data, 6)[0];
 
-    //_uartDebug->println("UPDATE_DATE2");
-    updateTime(this->extractField(data, 1));
+    m_gnss_data.coordinates.latitudeDirection = this->extractField(data, 4)[0]; 
+    m_gnss_data.coordinates.LongitudeDirection = this->extractField(data, 6)[0];
+    
+    m_gnss_data.coordinates.latitudeDegree = String(String(this->extractField(data, 3)[0]).toInt()*10 + String(this->extractField(data, 3)[1]).toInt()).toInt();
+    
+    String tmpCoord = "";
+    for(uint8_t a=2;a<=9;a++)
+    {
+      tmpCoord += this->extractField(data, 3)[a];
+    }
+    //_uartDebug->println(tmpCoord);
+
+    m_gnss_data.coordinates.latitudeMinute = tmpCoord.toFloat()/60.0;
+
+
+    uint8_t degLongitude = String(this->extractField(data, 5)[0]).toInt()*100 + String(this->extractField(data, 5)[1]).toInt()*10 + String(this->extractField(data, 5)[2]).toInt()*1;
+    
+    String tmpCoordLongitude = "";
+    for(uint8_t a=2;a<=10;a++)
+    {
+      tmpCoordLongitude += this->extractField(data, 5)[a];
+    }
+    //_uartDebug->println(tmpCoordLongitude);
+
+    m_gnss_data.coordinates.longitudeMinute = tmpCoordLongitude.toFloat()/60.0;
+
+
+    _uartDebug->println(m_gnss_data.coordinates.latitudeDegree,5);
+    _uartDebug->println(m_gnss_data.coordinates.latitudeMinute,5);
+    _uartDebug->println(m_gnss_data.coordinates.longitudeDegree,5);
+    _uartDebug->println(m_gnss_data.coordinates.longitudeMinute,5);
+   
+
+
+    //updateTime(this->extractField(data, 1));
     updateDate(this->extractField(data, 9));
     
     
@@ -304,7 +331,8 @@ void GNSS::simulate(void)
     digitalWrite(13, 0);
     delay(50);
     //_uartDebug->println(NMEA_GPGGA_EXAMPLE); 
-    //this->parseString(NMEA_GPGGA_EXAMPLE);   
+    this->parseString(NMEA_GPRMC_EXAMPLE);   
+
     
     //_uartDebug->println(NMEA_GPGSV_EXAMPLE); 
     //this->parseString(NMEA_GPGSV_EXAMPLE);
@@ -413,11 +441,11 @@ void GNSS::startSelfTest(void)
 
   if(result)
   {
-    //_uartDebug->begin(">>> OK ");
+    _uartDebug->begin(">>> OK ");
   }
   else 
   {
-   //_uartDebug->begin(">>> FAIL ");
+   _uartDebug->begin(">>> FAIL ");
   }
 
   //Extract data

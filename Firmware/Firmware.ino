@@ -29,9 +29,9 @@ void setup()
   gnss.setDebugChannel(&Serial, 9600);
   gnss.setDebugState(true);
 
-  //gnss.startSelfTest();
-  //gnss.init();
-/*
+  gnss.startSelfTest();
+  gnss.init();
+
   if(gnss.isReady())
   {
     Serial.println("<GNSS> OK");
@@ -41,7 +41,7 @@ void setup()
   }
 Serial.println("<ENDSELFTEST> FAIL");
   //DateTime tmpDateTime = {14.0, 30.0};
-*/
+
  //gnss.readData();
   
 
@@ -54,7 +54,7 @@ void loop() {
   
   // put your main code here, to run repeatedly:
 
-  //gnss.simulate();
+//gnss.simulate();
   //gnss.readData();
   delay(1000);
 
