@@ -173,8 +173,11 @@
       ],
       "track_widths": [
         0.0,
+        0.25,
         0.54,
-        1.0
+        1.0,
+        1.5,
+        2.0
       ],
       "via_dimensions": [
         {
@@ -500,12 +503,12 @@
       "WIND"
     ],
     [
-      "450f5a22-2652-4024-a63f-4acb991a80b5",
-      "Motors"
-    ],
-    [
       "9a9cee9e-b09b-4eb3-a522-35ab2aca519e",
       "GNSS"
+    ],
+    [
+      "450f5a22-2652-4024-a63f-4acb991a80b5",
+      "Motors"
     ]
   ],
   "text_variables": {}
