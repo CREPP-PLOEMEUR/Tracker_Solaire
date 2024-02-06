@@ -1,10 +1,11 @@
-<!--# Tacker solaire -->
+<!--# Tracker solaire -->
+<!--+ 2023-2024 -->
 <!--$ C++-->
 <!--$ Freecad -->
 <!--$ GPS -->
-<!--% Ce projet vise à concevoir et construire un système de suivi solaire spécialement conçu pour maximiser l'efficacité de la capture d'énergie solaire à artir d'un panneau solaire de dimensions spécifiques. -->
+<!--% Ce projet vise à concevoir et construire un système de suivi solaire spécialement conçu pour maximiser l'efficacité de la capture d'énergie solaire à partir d'un panneau solaire. -->
  -->
-# Projet de Tracker Solaire pour Panneau 1m x 1m60 - README
+# Projet de Tracker Solaire pour Panneau 1m x 1m60
 
 Bienvenue pour ce projet de Tracker Solaire.
 Ce projet vise à concevoir et construire un système de suivi solaire spécialement conçu pour maximiser l'efficacité de la capture d'énergie solaire à partir d'un panneau solaire de dimensions spécifiques.
