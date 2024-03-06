@@ -2,6 +2,9 @@
 #include "SunTracker.h"
 
 
+
+//#define DEBUG 
+ 
 SunTracker::SunTracker(CityLocalisation cityLocalisation) 
 {
   this->_cityLocalisation = cityLocalisation;
@@ -83,7 +86,10 @@ float SunTracker::getDeclination()
 
   if(this->_debugState)
   {
+
+  #ifdef DEBUG
     Serial.println("Declination : "+String(declinationInRad*57.29)+" degres");
+  #endif
   }
   return declinationInRad*57.29;
 
