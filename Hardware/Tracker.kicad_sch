@@ -2200,6 +2200,151 @@
 				)
 			)
 		)
+		(symbol "Switch:SW_Push"
+			(pin_numbers hide)
+			(pin_names
+				(offset 1.016) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "SW"
+				(at 1.27 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "SW_Push"
+				(at 0 -1.524 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Push button switch, generic, two pins"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "switch normally-open pushbutton push-button"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "SW_Push_0_1"
+				(circle
+					(center -2.032 0)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 1.27) (xy 0 3.048)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 1.27) (xy -2.54 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.032 0)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 0 180)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "power:+5V"
 			(power)
 			(pin_names
@@ -2679,6 +2824,16 @@
 	)
 	(wire
 		(pts
+			(xy 147.32 96.52) (xy 144.78 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "20d8bf4b-a9a9-44ce-8447-6292b2c13525")
+	)
+	(wire
+		(pts
 			(xy 45.72 26.67) (xy 48.26 26.67)
 		)
 		(stroke
@@ -2706,6 +2861,16 @@
 			(type default)
 		)
 		(uuid "263d7b3e-aa3b-488a-8803-c7f825a5de4f")
+	)
+	(wire
+		(pts
+			(xy 157.48 96.52) (xy 158.75 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "26de61f4-950e-40c3-80aa-ed4eb89a5280")
 	)
 	(wire
 		(pts
@@ -2769,16 +2934,6 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 92.71) (xy 163.83 92.71)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4a61f1d1-bf32-451f-94f6-a79fa2708fd8")
-	)
-	(wire
-		(pts
 			(xy 237.49 96.52) (xy 238.76 96.52)
 		)
 		(stroke
@@ -2796,6 +2951,16 @@
 			(type default)
 		)
 		(uuid "4f74abd7-8fc1-4342-b57e-f8afa3a77218")
+	)
+	(wire
+		(pts
+			(xy 144.78 96.52) (xy 144.78 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5f2291f5-c3b9-4985-b94c-28167e611491")
 	)
 	(wire
 		(pts
@@ -2856,6 +3021,16 @@
 			(type default)
 		)
 		(uuid "72aec7b9-0a4d-4671-b933-fc734740fef4")
+	)
+	(wire
+		(pts
+			(xy 189.23 111.76) (xy 193.04 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "772f1751-749d-4439-b8d0-0a06ed0fec2f")
 	)
 	(wire
 		(pts
@@ -3327,7 +3502,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0b00c16e-ecbd-41c1-b0c9-503e5501bd2b")
-		(property "Reference" "#PWR025"
+		(property "Reference" "#PWR07"
 			(at 95.25 49.53 0)
 			(effects
 				(font
@@ -3377,7 +3552,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "#PWR025")
+					(reference "#PWR07")
 					(unit 1)
 				)
 			)
@@ -3392,7 +3567,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0da3c9ea-095f-4b67-9fcc-d2ddbbe0ef2c")
-		(property "Reference" "R1"
+		(property "Reference" "R2"
 			(at 153.67 99.06 90)
 			(effects
 				(font
@@ -3444,7 +3619,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "R1")
+					(reference "R2")
 					(unit 1)
 				)
 			)
@@ -3459,7 +3634,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "1079971b-1b41-40e1-a6bc-2838f3388254")
-		(property "Reference" "J4"
+		(property "Reference" "J6"
 			(at 149.225 100.33 0)
 			(effects
 				(font
@@ -3509,7 +3684,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "J4")
+					(reference "J6")
 					(unit 1)
 				)
 			)
@@ -3525,7 +3700,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "156a4068-a6d3-4b25-b75f-c28138c61191")
-		(property "Reference" "#PWR04"
+		(property "Reference" "#PWR01"
 			(at 34.29 49.53 0)
 			(effects
 				(font
@@ -3575,7 +3750,72 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "#PWR04")
+					(reference "#PWR01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 158.75 96.52 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "1c11ca62-5f35-4a3f-8d4b-2880875d62bb")
+		(property "Reference" "#PWR011"
+			(at 165.1 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 160.782 92.964 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 158.75 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 158.75 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 158.75 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "3e003f0c-e97c-48ea-ac10-fccb6345b75b")
+		)
+		(instances
+			(project "Tracker"
+				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
+					(reference "#PWR011")
 					(unit 1)
 				)
 			)
@@ -3590,7 +3830,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "20362c54-4e92-40dd-b12c-45ad26df5186")
-		(property "Reference" "J6"
+		(property "Reference" "J3"
 			(at 139.7 34.925 0)
 			(effects
 				(font
@@ -3641,7 +3881,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "J6")
+					(reference "J3")
 					(unit 1)
 				)
 			)
@@ -3804,7 +4044,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3772cb35-9c6a-4d55-9377-17df7a7c25de")
-		(property "Reference" "#PWR015"
+		(property "Reference" "#PWR020"
 			(at 264.16 91.44 0)
 			(effects
 				(font
@@ -3855,7 +4095,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "#PWR015")
+					(reference "#PWR020")
 					(unit 1)
 				)
 			)
@@ -3943,7 +4183,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "3d8e72df-1c1b-4078-a7f9-afc18122ad51")
-		(property "Reference" "#PWR012"
+		(property "Reference" "#PWR017"
 			(at 229.87 87.63 0)
 			(effects
 				(font
@@ -3993,7 +4233,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "#PWR012")
+					(reference "#PWR017")
 					(unit 1)
 				)
 			)
@@ -4009,7 +4249,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "49a9539b-f18f-4fbe-a45c-8aadc0da7a53")
-		(property "Reference" "#PWR028"
+		(property "Reference" "#PWR010"
 			(at 147.32 49.53 0)
 			(effects
 				(font
@@ -4059,7 +4299,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "#PWR028")
+					(reference "#PWR010")
 					(unit 1)
 				)
 			)
@@ -4075,7 +4315,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4e71df4b-0436-4cb9-86ff-0a27e5162ae6")
-		(property "Reference" "D7"
+		(property "Reference" "D2"
 			(at 99.06 30.7975 90)
 			(effects
 				(font
@@ -4129,7 +4369,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "D7")
+					(reference "D2")
 					(unit 1)
 				)
 			)
@@ -4145,7 +4385,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "526cf8cd-b601-47f1-be0a-aba54e033fd4")
-		(property "Reference" "#PWR010"
+		(property "Reference" "#PWR08"
 			(at 127 137.16 0)
 			(effects
 				(font
@@ -4195,7 +4435,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "#PWR010")
+					(reference "#PWR08")
 					(unit 1)
 				)
 			)
@@ -4211,7 +4451,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "573e3912-22f2-4af5-baba-b6f0137f8cbb")
-		(property "Reference" "#PWR014"
+		(property "Reference" "#PWR021"
 			(at 264.16 96.52 0)
 			(effects
 				(font
@@ -4262,7 +4502,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "#PWR014")
+					(reference "#PWR021")
 					(unit 1)
 				)
 			)
@@ -4278,7 +4518,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "59172f09-f81a-48ac-9ee9-e0a5c4924d06")
-		(property "Reference" "#PWR06"
+		(property "Reference" "#PWR09"
 			(at 128.27 54.61 0)
 			(effects
 				(font
@@ -4328,7 +4568,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "#PWR06")
+					(reference "#PWR09")
 					(unit 1)
 				)
 			)
@@ -4410,7 +4650,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "659958ea-22a0-4eab-971a-fd4ed66db28f")
-		(property "Reference" "#PWR02"
+		(property "Reference" "#PWR06"
 			(at 71.12 49.53 0)
 			(effects
 				(font
@@ -4460,7 +4700,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "#PWR02")
+					(reference "#PWR06")
 					(unit 1)
 				)
 			)
@@ -4475,7 +4715,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "66b84cff-3116-4f21-b492-873ce1e32a78")
-		(property "Reference" "#PWR019"
+		(property "Reference" "#PWR015"
 			(at 199.39 88.9 0)
 			(effects
 				(font
@@ -4484,8 +4724,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GND"
-			(at 195.072 85.344 0)
+		(property "Value" "GND_MOTOR"
+			(at 197.358 91.948 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4525,7 +4765,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "#PWR019")
+					(reference "#PWR015")
 					(unit 1)
 				)
 			)
@@ -4618,6 +4858,74 @@
 		)
 	)
 	(symbol
+		(lib_id "Switch:SW_Push")
+		(at 152.4 96.52 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "75114982-47cb-4a40-b17c-912b4bb4f519")
+		(property "Reference" "SW1"
+			(at 148.59 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SW_Push"
+			(at 152.4 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm"
+			(at 152.4 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 152.4 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 152.4 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d01f424c-f582-4fad-9749-7c228ab3bf4f")
+		)
+		(pin "2"
+			(uuid "ccb7479f-d28a-4b6c-9d5a-0d64ad5a7116")
+		)
+		(instances
+			(project "Tracker"
+				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
+					(reference "SW1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+5V")
 		(at 160.02 101.6 270)
 		(unit 1)
@@ -4627,7 +4935,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7b15f059-2508-4de8-81f6-a564605539f2")
-		(property "Reference" "#PWR013"
+		(property "Reference" "#PWR012"
 			(at 156.21 101.6 0)
 			(effects
 				(font
@@ -4678,7 +4986,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "#PWR013")
+					(reference "#PWR012")
 					(unit 1)
 				)
 			)
@@ -4694,7 +5002,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "842232ae-bbf6-47aa-b3df-42f6a4cbdc50")
-		(property "Reference" "H1"
+		(property "Reference" "H3"
 			(at 267.97 21.59 0)
 			(effects
 				(font
@@ -4742,7 +5050,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "H1")
+					(reference "H3")
 					(unit 1)
 				)
 			)
@@ -4758,7 +5066,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8fc79353-eaa9-46be-9d8d-d971c6dede4c")
-		(property "Reference" "#PWR01"
+		(property "Reference" "#PWR03"
 			(at 48.26 49.53 0)
 			(effects
 				(font
@@ -4808,7 +5116,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "#PWR01")
+					(reference "#PWR03")
 					(unit 1)
 				)
 			)
@@ -4823,7 +5131,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "90a2ca10-5638-4543-ba68-923af315199f")
-		(property "Reference" "J5"
+		(property "Reference" "J7"
 			(at 149.225 102.87 0)
 			(effects
 				(font
@@ -4873,7 +5181,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "J5")
+					(reference "J7")
 					(unit 1)
 				)
 			)
@@ -4889,7 +5197,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "90d25d34-1455-4242-ad4c-02170ad02fe0")
-		(property "Reference" "#PWR011"
+		(property "Reference" "#PWR018"
 			(at 226.06 93.98 0)
 			(effects
 				(font
@@ -4940,7 +5248,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "#PWR011")
+					(reference "#PWR018")
 					(unit 1)
 				)
 			)
@@ -4956,7 +5264,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9a6ce3d3-3ce0-404b-9f9f-8529fe53e9f4")
-		(property "Reference" "J9"
+		(property "Reference" "J2"
 			(at 82.55 20.32 0)
 			(effects
 				(font
@@ -5009,7 +5317,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "J9")
+					(reference "J2")
 					(unit 1)
 				)
 			)
@@ -5024,7 +5332,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "a236b892-75bc-46aa-b4e6-6b5080adf2f7")
-		(property "Reference" "J7"
+		(property "Reference" "J4"
 			(at 142.24 34.925 0)
 			(effects
 				(font
@@ -5075,7 +5383,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "J7")
+					(reference "J4")
 					(unit 1)
 				)
 			)
@@ -5091,7 +5399,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a3d1f5f0-e80c-4fa1-a484-d6e15921b2fb")
-		(property "Reference" "#PWR030"
+		(property "Reference" "#PWR02"
 			(at 48.26 27.94 0)
 			(effects
 				(font
@@ -5141,7 +5449,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "#PWR030")
+					(reference "#PWR02")
 					(unit 1)
 				)
 			)
@@ -5157,7 +5465,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a5fe6930-3b66-4c93-adfb-20d7cb4e0c4b")
-		(property "Reference" "H2"
+		(property "Reference" "H4"
 			(at 274.32 158.75 0)
 			(effects
 				(font
@@ -5205,7 +5513,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "H2")
+					(reference "H4")
 					(unit 1)
 				)
 			)
@@ -5221,7 +5529,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "aef914a4-18a3-406b-9731-347890ee053f")
-		(property "Reference" "H3"
+		(property "Reference" "H2"
 			(at 22.86 161.29 0)
 			(effects
 				(font
@@ -5269,7 +5577,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "H3")
+					(reference "H2")
 					(unit 1)
 				)
 			)
@@ -5284,7 +5592,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "b0450b8f-9de0-4e7d-80ef-8497f9cf9f03")
-		(property "Reference" "#PWR09"
+		(property "Reference" "#PWR014"
 			(at 199.39 78.74 0)
 			(effects
 				(font
@@ -5334,7 +5642,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "#PWR09")
+					(reference "#PWR014")
 					(unit 1)
 				)
 			)
@@ -5420,7 +5728,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b43af045-d5e4-4de1-b910-77aaa221df66")
-		(property "Reference" "J11"
+		(property "Reference" "J8"
 			(at 245.11 80.01 0)
 			(effects
 				(font
@@ -5496,7 +5804,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "J11")
+					(reference "J8")
 					(unit 1)
 				)
 			)
@@ -5512,7 +5820,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c25ac5c3-9f4e-4cd8-8fe8-5387f202d39f")
-		(property "Reference" "R7"
+		(property "Reference" "R1"
 			(at 97.79 36.83 0)
 			(effects
 				(font
@@ -5566,7 +5874,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "R7")
+					(reference "R1")
 					(unit 1)
 				)
 			)
@@ -5652,7 +5960,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c8fdb01d-209b-4de3-88e8-969c530786b5")
-		(property "Reference" "H4"
+		(property "Reference" "H1"
 			(at 20.32 13.97 0)
 			(effects
 				(font
@@ -5700,7 +6008,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "H4")
+					(reference "H1")
 					(unit 1)
 				)
 			)
@@ -5716,7 +6024,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d3d8c54e-74d2-4d2b-9f28-9be36d7c467f")
-		(property "Reference" "#PWR03"
+		(property "Reference" "#PWR04"
 			(at 59.69 49.53 0)
 			(effects
 				(font
@@ -5766,7 +6074,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "#PWR03")
+					(reference "#PWR04")
 					(unit 1)
 				)
 			)
@@ -5782,7 +6090,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d50cd5bb-480c-4048-a1c4-430fd214110b")
-		(property "Reference" "#PWR016"
+		(property "Reference" "#PWR019"
 			(at 264.16 86.36 0)
 			(effects
 				(font
@@ -5829,6 +6137,71 @@
 		)
 		(pin "1"
 			(uuid "b7e94c52-80ac-4716-a4fe-202fb241fc57")
+		)
+		(instances
+			(project "Tracker"
+				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
+					(reference "#PWR019")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 193.04 111.76 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d54ec172-2483-4225-85a7-165e66daeee4")
+		(property "Reference" "#PWR016"
+			(at 199.39 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND_WIND"
+			(at 197.358 114.808 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 193.04 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 193.04 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 193.04 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "e70bfd7d-8a17-4837-9fa6-2cf36c284a5e")
 		)
 		(instances
 			(project "Tracker"
@@ -5916,7 +6289,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "e09b563c-d62b-46ef-a183-0c69ee80bb19")
-		(property "Reference" "#PWR08"
+		(property "Reference" "#PWR013"
 			(at 199.39 64.77 0)
 			(effects
 				(font
@@ -5966,7 +6339,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "#PWR08")
+					(reference "#PWR013")
 					(unit 1)
 				)
 			)
@@ -5981,7 +6354,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "fecd7962-d506-4170-a3c6-a7a73ec13bf7")
-		(property "Reference" "J8"
+		(property "Reference" "J5"
 			(at 144.78 34.925 0)
 			(effects
 				(font
@@ -6032,7 +6405,7 @@
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
-					(reference "J8")
+					(reference "J5")
 					(unit 1)
 				)
 			)
@@ -6040,7 +6413,7 @@
 	)
 	(sheet
 		(at 161.29 107.95)
-		(size 16.51 7.62)
+		(size 27.94 7.62)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -6089,6 +6462,16 @@
 			)
 			(uuid "39ad769c-839e-464f-991b-2243f276b2cf")
 		)
+		(pin "GND" bidirectional
+			(at 189.23 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "27cf2e61-4bf8-4357-8178-e276f218e748")
+		)
 		(instances
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85"
@@ -6117,7 +6500,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "Motors.kicad_sch"
+		(property "Sheetfile" "../../../Electronique/Kicad/Motor_Control/Motor_Control.kicad_sch"
 			(at 163.83 94.5646 0)
 			(effects
 				(font
@@ -6166,16 +6549,6 @@
 				(justify right)
 			)
 			(uuid "759976d2-1663-4853-99f3-6898e20d7ebb")
-		)
-		(pin "Pot_Measure" output
-			(at 163.83 92.71 180)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-			(uuid "622bee2a-95e4-4e8c-b776-d8eb01c6c8e3")
 		)
 		(instances
 			(project "Tracker"

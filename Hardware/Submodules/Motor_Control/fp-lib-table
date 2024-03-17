@@ -1,0 +1,5 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "HeatSink")(type "KiCad")(uri "/home/nico/Documents/CREPP/Tracker_Solaire/Hardware/Submodules/MotorControl/HeatSink.pretty")(options "")(descr ""))
+  (lib (name "Holes")(type "KiCad")(uri "/home/nico/Documents/CREPP/Tracker_Solaire/Hardware/Submodules/MotorControl/Holes.pretty")(options "")(descr ""))
+)

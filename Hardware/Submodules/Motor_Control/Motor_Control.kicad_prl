@@ -1,6 +1,6 @@
 {
   "board": {
-    "active_layer": 44,
+    "active_layer": 0,
     "active_layer_preset": "",
     "auto_track_width": false,
     "hidden_netclasses": [],
@@ -9,17 +9,17 @@
     "net_color_mode": 1,
     "opacity": {
       "images": 0.6,
-      "pads": 1.0,
-      "tracks": 1.0,
-      "vias": 1.0,
-      "zones": 0.14000000059604645
+      "pads": 0.2199999988079071,
+      "tracks": 0.8299999833106995,
+      "vias": 0.46000000834465027,
+      "zones": 0.1899999976158142
     },
     "selection_filter": {
       "dimensions": true,
       "footprints": true,
       "graphics": true,
       "keepouts": true,
-      "lockedItems": true,
+      "lockedItems": false,
       "otherItems": true,
       "pads": true,
       "text": true,
@@ -63,7 +63,7 @@
       39,
       40
     ],
-    "visible_layers": "7ffffff_80000001",
+    "visible_layers": "fffffff_ffffffff",
     "zone_display_mode": 0
   },
   "git": {
@@ -73,7 +73,7 @@
     "ssh_key": ""
   },
   "meta": {
-    "filename": "Tracker.kicad_prl",
+    "filename": "Motor_Control.kicad_prl",
     "version": 3
   },
   "project": {
