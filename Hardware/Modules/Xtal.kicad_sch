@@ -3,7 +3,12 @@
 	(generator "eeschema")
 	(generator_version "8.0")
 	(uuid "e32ccd04-d645-49c2-a980-298a2d259f2f")
-	(paper "A4")
+	(paper "A5")
+	(title_block
+		(title "MCU Crystal oscillator")
+		(date "2024-04-17")
+		(rev "1.0")
+	)
 	(lib_symbols
 		(symbol "Device:C"
 			(pin_numbers hide)
@@ -311,26 +316,26 @@
 		)
 	)
 	(junction
-		(at 86.36 71.12)
+		(at 95.25 50.8)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "5d92c238-5bc0-453b-9359-cd30bc2f55d8")
 	)
 	(junction
-		(at 102.87 76.2)
+		(at 111.76 55.88)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "9bc474d5-94dd-43fc-8bb8-60503cff2c71")
 	)
 	(junction
-		(at 86.36 81.28)
+		(at 95.25 60.96)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "afa34fab-8464-46a6-adea-7f9263df4680")
 	)
 	(wire
 		(pts
-			(xy 100.33 81.28) (xy 102.87 81.28)
+			(xy 109.22 60.96) (xy 111.76 60.96)
 		)
 		(stroke
 			(width 0)
@@ -340,7 +345,7 @@
 	)
 	(wire
 		(pts
-			(xy 102.87 76.2) (xy 105.41 76.2)
+			(xy 111.76 55.88) (xy 114.3 55.88)
 		)
 		(stroke
 			(width 0)
@@ -350,7 +355,7 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 71.12) (xy 86.36 72.39)
+			(xy 95.25 50.8) (xy 95.25 52.07)
 		)
 		(stroke
 			(width 0)
@@ -360,7 +365,7 @@
 	)
 	(wire
 		(pts
-			(xy 76.2 81.28) (xy 86.36 81.28)
+			(xy 85.09 60.96) (xy 95.25 60.96)
 		)
 		(stroke
 			(width 0)
@@ -370,7 +375,7 @@
 	)
 	(wire
 		(pts
-			(xy 102.87 71.12) (xy 102.87 76.2)
+			(xy 111.76 50.8) (xy 111.76 55.88)
 		)
 		(stroke
 			(width 0)
@@ -380,7 +385,7 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 81.28) (xy 92.71 81.28)
+			(xy 95.25 60.96) (xy 101.6 60.96)
 		)
 		(stroke
 			(width 0)
@@ -390,7 +395,7 @@
 	)
 	(wire
 		(pts
-			(xy 86.36 80.01) (xy 86.36 81.28)
+			(xy 95.25 59.69) (xy 95.25 60.96)
 		)
 		(stroke
 			(width 0)
@@ -400,7 +405,7 @@
 	)
 	(wire
 		(pts
-			(xy 100.33 71.12) (xy 102.87 71.12)
+			(xy 109.22 50.8) (xy 111.76 50.8)
 		)
 		(stroke
 			(width 0)
@@ -410,7 +415,7 @@
 	)
 	(wire
 		(pts
-			(xy 76.2 71.12) (xy 86.36 71.12)
+			(xy 85.09 50.8) (xy 95.25 50.8)
 		)
 		(stroke
 			(width 0)
@@ -420,7 +425,7 @@
 	)
 	(wire
 		(pts
-			(xy 102.87 76.2) (xy 102.87 81.28)
+			(xy 111.76 55.88) (xy 111.76 60.96)
 		)
 		(stroke
 			(width 0)
@@ -430,7 +435,7 @@
 	)
 	(wire
 		(pts
-			(xy 92.71 71.12) (xy 86.36 71.12)
+			(xy 101.6 50.8) (xy 95.25 50.8)
 		)
 		(stroke
 			(width 0)
@@ -440,7 +445,7 @@
 	)
 	(hierarchical_label "XTAl_1"
 		(shape bidirectional)
-		(at 76.2 71.12 180)
+		(at 85.09 50.8 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -452,7 +457,7 @@
 	)
 	(hierarchical_label "GND"
 		(shape bidirectional)
-		(at 105.41 76.2 0)
+		(at 114.3 55.88 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -464,7 +469,7 @@
 	)
 	(hierarchical_label "XTAl_2"
 		(shape bidirectional)
-		(at 76.2 81.28 180)
+		(at 85.09 60.96 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -476,15 +481,15 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 96.52 71.12 270)
+		(at 105.41 50.8 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "145e68d2-7621-479f-9fc1-8df676bb85f3")
-		(property "Reference" "C7"
-			(at 93.98 69.85 90)
+		(property "Reference" "C6"
+			(at 102.87 49.53 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -492,7 +497,7 @@
 			)
 		)
 		(property "Value" "22pF"
-			(at 95.25 74.93 90)
+			(at 104.14 54.61 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -500,7 +505,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_THT:C_Disc_D4.7mm_W2.5mm_P5.00mm"
-			(at 92.71 72.0852 0)
+			(at 101.6 51.7652 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -509,7 +514,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 96.52 71.12 0)
+			(at 105.41 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -518,7 +523,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 96.52 71.12 0)
+			(at 105.41 50.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -527,10 +532,77 @@
 			)
 		)
 		(pin "1"
-			(uuid "c4d522cc-e069-4758-a2b0-e2c14f1d72e1")
+			(uuid "cff49f5d-14a3-44ac-8838-12ed037e1962")
 		)
 		(pin "2"
-			(uuid "5cbe3192-ec11-4dae-991e-6beb3f6b1fc3")
+			(uuid "6b06a84b-0780-4ebe-98ba-8d64fc506ec0")
+		)
+		(instances
+			(project "Tracker"
+				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85/9d930418-4d94-42d8-8741-e1ee0e746f35"
+					(reference "C6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 105.41 60.96 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "a610d864-b6e1-4f31-a51a-61403e938933")
+		(property "Reference" "C7"
+			(at 102.87 59.69 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "22pF"
+			(at 104.14 64.77 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Capacitor_THT:C_Disc_D4.7mm_W2.5mm_P5.00mm"
+			(at 101.6 61.9252 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 105.41 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 105.41 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1bc6412f-acf5-419f-8840-1afb8412a1a8")
+		)
+		(pin "2"
+			(uuid "75824117-312f-4684-9c73-246b61ae7def")
 		)
 		(instances
 			(project "Tracker"
@@ -542,75 +614,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C")
-		(at 96.52 81.28 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "a610d864-b6e1-4f31-a51a-61403e938933")
-		(property "Reference" "C8"
-			(at 93.98 80.01 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "22pF"
-			(at 95.25 85.09 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Capacitor_THT:C_Disc_D4.7mm_W2.5mm_P5.00mm"
-			(at 92.71 82.2452 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 96.52 81.28 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 96.52 81.28 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "79bb136c-899b-429d-bb56-de0c713a815b")
-		)
-		(pin "2"
-			(uuid "30990e9b-4028-4a4d-84bf-759fd51a85e1")
-		)
-		(instances
-			(project "Tracker"
-				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85/9d930418-4d94-42d8-8741-e1ee0e746f35"
-					(reference "C8")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:Crystal")
-		(at 86.36 76.2 90)
+		(at 95.25 55.88 90)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom yes)
@@ -618,7 +623,7 @@
 		(dnp no)
 		(uuid "be7af45a-d098-4067-9ee6-f4b276858e7e")
 		(property "Reference" "Y1"
-			(at 81.28 73.66 90)
+			(at 90.17 53.34 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -627,7 +632,7 @@
 			)
 		)
 		(property "Value" "16MHz"
-			(at 76.2 76.2 90)
+			(at 85.09 55.88 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -636,7 +641,7 @@
 			)
 		)
 		(property "Footprint" "Crystal:Crystal_HC49-4H_Vertical"
-			(at 86.36 76.2 0)
+			(at 95.25 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -645,7 +650,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 86.36 76.2 0)
+			(at 95.25 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -654,7 +659,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 86.36 76.2 0)
+			(at 95.25 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -663,10 +668,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "67f00287-6f6d-439a-bea3-415fda3c62be")
+			(uuid "be54d300-fc19-4003-b157-2d38d1aeea2f")
 		)
 		(pin "2"
-			(uuid "cc38f3ea-40d2-4708-9d11-f62985de2485")
+			(uuid "c55223f5-45cd-4650-ac22-0aa36c396eaf")
 		)
 		(instances
 			(project "Tracker"
