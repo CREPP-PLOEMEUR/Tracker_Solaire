@@ -179,18 +179,18 @@ CityLocalisation city = {0,0, 0, 0};
 SunTracker sunTracker(city);
 
 
-RGB led(RGB_RED_PIN,RGB_GREEN_PIN,RGB_BLUE_PIN); 
+//RGB led(RGB_RED_PIN,RGB_GREEN_PIN,RGB_BLUE_PIN); 
 
 GNSS gnss(GNSS_RX, GNSS_TX, 9600);
 
 void setup() 
 {
 
-  pinMode(13, OUTPUT);
+  //pinMode(13, OUTPUT);
   
-  Serial.begin(9600);
+  /*Serial.begin(9600);
   gnss.setDebugChannel(&Serial, 9600);
-  gnss.setDebugState(true);
+  gnss.setDebugState(true);*/
 
   gnss.init();
 
@@ -225,13 +225,13 @@ void loop() {
     
     //Serial.println("COORDINATES FOUND !");
 
-    Serial.println(gnss.getCoordinates().latitude,5);
+    /*Serial.println(gnss.getCoordinates().latitude,5);
     Serial.println(gnss.getCoordinates().longitude,5);
     //Serial.println(gnss.getDate().day);
     Serial.println(String(gnss.getTime().hour)+":"+String(gnss.getTime().minute));
 
     sunTracker.setLocalisation(gnss.getCoordinates());
-
+*/
 
 
     sunTracker.update(sunTracker.convertDayInRank(gnss.getDate()), {gnss.getTime().hour,gnss.getTime().minute});

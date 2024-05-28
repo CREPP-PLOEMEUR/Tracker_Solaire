@@ -10,7 +10,7 @@
 #define RTC_CLK
 
 
- #define GNSS_RX 10
- #define GNSS_TX  11
+ #define GNSS_RX 1
+ #define GNSS_TX  1
 
 

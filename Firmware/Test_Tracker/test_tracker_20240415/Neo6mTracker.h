@@ -11,7 +11,7 @@
 
 #include <Arduino.h>
 
-#include <TinyGPS++.h>
+#include <TinyGPSPlus.h>
 #include <SoftwareSerial.h>
 #include "commonTypes.h"
 

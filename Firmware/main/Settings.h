@@ -1,0 +1,15 @@
+#ifndef SETTINGS_HPP
+#define SETTINGS_HPP
+
+#define UART_BAUDRATE 38400
+
+
+
+/*!
+    GNSS
+*/
+
+#define GNSS_BAUDRATE 38400
+#define UART_BAUDRATE 115200
+
+#endif
