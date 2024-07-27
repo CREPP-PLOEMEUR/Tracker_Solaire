@@ -17,16 +17,16 @@ uint8_t elevIN_A=4;     // broche IN_A - output Active High
 uint8_t elevIN_B=5;     // broche IN_B - output Active High
 
 uint8_t  elevPotar=A0;  // mesure du potentiomètre Input Analog 
-
+uint8_t userPot = A1;
 
 
 //pour le TB6600 d'azimuth
 //controle du tb6600
-uint8_t tb66DirPin = 8;  // Broche Dir   - output Active High
-uint8_t tb66PulsePin = 9; // Broche Pulse  - output Active High
-uint8_t tb66EnaPin = 10; // broche Enable -  - output Active High
+uint8_t tb66DirPin = 9;  // Broche Dir   - output Active High
+uint8_t tb66PulsePin = 10; // Broche Pulse  - output Active High
+uint8_t tb66EnaPin = 8; // broche Enable -  - output Active High
 
-uint8_t tb66ButeePin=11;  // Broche Capteur fin de course Retour - Active High
+uint8_t tb66ButeePin=A2;  // Broche Capteur fin de course Retour - Active High
 
 // oled - Par defaut c'est reconnu par la librairie Wire, donc on s'assure que les pattes ne sont pas utilisées
 

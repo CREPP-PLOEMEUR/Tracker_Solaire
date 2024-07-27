@@ -1,0 +1,6 @@
+{
+    "board": "arduino:avr:uno",
+    "programmer": "usbasp",
+    "sketch": "main.ino",
+    "port": "/dev/ttyS0"
+}

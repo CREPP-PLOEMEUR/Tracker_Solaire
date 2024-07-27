@@ -11,6 +11,7 @@
 
 #include "Arduino.h"
 #include <SoftwareSerial.h>
+#include "Display.h"
 
 #include "NMEA.h"
 
@@ -46,6 +47,7 @@
 #define GPS_LONGITUDE_DEG -3
 #define GPS_LONGITUDE_SEC 49623
 
+//47.75958;-3.49623
 
 
 /**
@@ -115,7 +117,8 @@ class GNSS
     void simulate(void);
 
     bool isValidPosition();
-
+    void debug();
+    void addTerminal(Display *display);
 
     inline String hexToStr(uint16_t data)
     {
@@ -178,6 +181,7 @@ class GNSS
 
     SoftwareSerial *_uartDevice; 
     HardwareSerial *_uartDebug; //used when debugging
+    Display *terminal;
 
 
     GNSS_DebugState _debugState = GNSS_DEFAULT_DEBUG_STATE;
@@ -186,8 +190,6 @@ class GNSS
     GNSS_Baudrate _gnss_baudrate = GNSS_DEFAULT_BAUDRATE;
 
 
-
-    void debug(String debugData);
     void parseString(NMEA_Frame data);
 
     void updateSource(NMEA_Frame data);
@@ -204,7 +206,6 @@ class GNSS
     void updateDate(String frame);
 
     NMEA_MessageType extractType(NMEA_Frame frame);
-    //NMEA_Source extractSource(NMEA_Frame frame);
 
 }; 
 

@@ -24,10 +24,7 @@ static NMEA_Source nmea_sources[NMEA_SOURCE_NUMBER] =
 
 GNSS::GNSS(GNSS_Pin_Rx rx_Pin, GNSS_Pin_Tx tx_Pin, GNSS_Baudrate gnss_baudrate) : _rx_Pin{rx_Pin}, _tx_Pin{tx_Pin}, _gnss_baudrate{gnss_baudrate}
 {
-    //init UART communication
-    //_uartDevice = new SoftwareSerial(_rx_Pin, _tx_Pin);
     Serial.begin(_gnss_baudrate);
-
 }
 
 void GNSS::setDebugChannel(HardwareSerial *serial, unsigned long baudrate)
@@ -42,9 +39,22 @@ void GNSS::setDebugState(GNSS_DebugState debugState)
     this->_debugState = debugState;
 }
 
-void GNSS::debug(String debugData)
+void GNSS::debug()
 {
-    //_uartDebug->
+
+  terminal->println("SOURCE = "+String(m_gnss_data.source.name));
+  terminal->println("LAT_DIR = "+String(m_gnss_data.coordinates.latitudeDirection));
+  terminal->println("LONG_DIR = "+String(m_gnss_data.coordinates.longitudeDirection));
+  terminal->println("TIME = "+String(m_gnss_data.time.hour)+" h "+String(m_gnss_data.time.minute));
+  delay(5000);
+  terminal->clear();
+  terminal->println("DATE = "+String(m_gnss_data.date.day)+"/"+String(m_gnss_data.date.month)+"/"+String(m_gnss_data.date.year));
+  terminal->println("SATELLITES = "+String(m_gnss_data.satellitesNumber));
+
+  terminal->println("GNSS.LATITUDE = "+String(m_gnss_data.coordinates.latitude,5));
+  terminal->println("GNSS.LONGITUDE = "+String(m_gnss_data.coordinates.longitude,5 ));
+
+   //display->println("MAPS = "+String(m_gnss_data.coordinates.latitude,5 )+","+String(m_gnss_data.coordinates.longitude,5));
 }
 
 inline byte calculateChecksum(byte *data, int length) {
@@ -60,24 +70,24 @@ inline byte calculateChecksum(byte *data, int length) {
 }
 void GNSS::init()
 {
-  //Serial.println("$PUBX,40,GLL,0,0,0,0*5C");
-  //Header of 0xB5 0x62 0x06 0x08
+
+  Serial.begin(_gnss_baudrate);
+
   byte ubxCommand[] = {0xB5,0x62,0x06,0x08,0x06,0x00,0xC8,0x00,0x01,0x00,0x01,0x00,0xDE,0x6A};
 
-  
-   // 0x06, 0x08,    0x06, 0x00,     0xE8, 0x03,     0x01, 0x00, 0x00, 0x00,   0x00, 0x00,    0x00, 0x00,0x00, 0x00 
-  // Calculer le checksum
-  // Envoyer la commande UBX avec le checksum
     Serial.println("PUBX,41,1,3,3,38400,0");
     Serial.write(ubxCommand, sizeof(ubxCommand));
 
-   //Serial.write();
-
     Serial.write(ubxCommand, sizeof(ubxCommand));
     Serial.println(GNSS_setUpdateRate());
-    //Serial.write(0xB562060806006400010001001111);
+
 }
 
+
+void GNSS::addTerminal(Display *display)
+{
+  terminal = display;
+}
 
 void GNSS::startGNSS()
 {
@@ -152,11 +162,12 @@ bool GNSS::readData(void)
 
   while (Serial.available()) {
 
-        char c = Serial.read();
+    char c = Serial.read();
 
-        if (c == m_nmea_settings.header) 
-        {
+    if (c == m_nmea_settings.header) 
+    {
             NMEA_Frame frame = Serial.readStringUntil('\n');
+
             bool error = true;
             for(uint8_t i = 0; i<frame.length();i++)
             {
@@ -168,7 +179,7 @@ bool GNSS::readData(void)
 
             if(error == false)
             {
-            this->parseString(frame);   
+              this->parseString(frame);   
            //_uartDebug->println(frame);     
             }
             else {
@@ -219,12 +230,11 @@ void GNSS::displayInformations(void)
 void GNSS::parseString(NMEA_Frame data) 
 {
 
- 
+  
   this->updateSource(data);
   this->updateMessageType(data);
   this->updateParser(data);
 
-  
 
   // _uartDebug->println("TYPE="+String(m_gnss_data.messageType.name));
   if(m_gnss_data.messageType.name == nmea_messageTypes[0].name) //GGA
@@ -287,7 +297,7 @@ void GNSS::parseString(NMEA_Frame data)
     m_gnss_data.coordinates.longitude= ( longitudeDirection == 'W' ) ? -m_gnss_data.coordinates.longitude : m_gnss_data.coordinates.longitude;
     m_gnss_data.coordinates.latitude= ( latitudeDirection == 'S') ? -m_gnss_data.coordinates.latitude : m_gnss_data.coordinates.latitude;
 
-    if(m_gnss_data.coordinates.longitude != 0.0 || m_gnss_data.coordinates.latitude)
+    if(m_gnss_data.coordinates.longitude != 0.0 || m_gnss_data.coordinates.latitude != 0.0)
     {
       m_gnss_data.isReady = true;
     }

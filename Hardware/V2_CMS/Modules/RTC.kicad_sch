@@ -10,6 +10,108 @@
 		(rev "1.0")
 	)
 	(lib_symbols
+		(symbol "Connector:TestPoint"
+			(pin_numbers hide)
+			(pin_names
+				(offset 0.762) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "TP"
+				(at 0 6.858 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "TestPoint"
+				(at 0 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 5.08 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 5.08 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "test point"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "test point tp"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Pin* Test*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "TestPoint_0_1"
+				(circle
+					(center 0 3.302)
+					(radius 0.762)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "TestPoint_1_1"
+				(pin passive line
+					(at 0 0 90)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "Device:C"
 			(pin_numbers hide)
 			(pin_names
@@ -604,151 +706,6 @@
 				)
 			)
 		)
-		(symbol "Jumper:Jumper_2_Bridged"
-			(pin_numbers hide)
-			(pin_names
-				(offset 0) hide)
-			(exclude_from_sim yes)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "JP"
-				(at 0 1.905 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "Jumper_2_Bridged"
-				(at 0 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Jumper, 2-pole, closed/bridged"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "Jumper SPST"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "Jumper* TestPoint*2Pads* TestPoint*Bridge*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "Jumper_2_Bridged_0_0"
-				(circle
-					(center -2.032 0)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 2.032 0)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "Jumper_2_Bridged_0_1"
-				(arc
-					(start 1.524 0.254)
-					(mid 0 0.762)
-					(end -1.524 0.254)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "Jumper_2_Bridged_1_1"
-				(pin passive line
-					(at -5.08 0 0)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 0 180)
-					(length 2.54)
-					(name "B"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "Timer_RTC:DS1307+"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -977,10 +934,16 @@
 		)
 	)
 	(junction
-		(at 90.17 52.07)
+		(at 113.03 66.04)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "159cea86-e5d0-4735-9f72-9b155d062306")
+		(uuid "2cc2db40-2fad-40f8-a796-5e6f8855eaf8")
+	)
+	(junction
+		(at 82.55 43.18)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "39be5477-1e6e-4579-b414-8c24fa98b9e9")
 	)
 	(bus_entry
 		(at 62.23 63.5)
@@ -1022,6 +985,26 @@
 	)
 	(wire
 		(pts
+			(xy 82.55 43.18) (xy 93.98 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "29132644-7d1d-4130-aa18-eced74384151")
+	)
+	(wire
+		(pts
+			(xy 93.98 43.18) (xy 93.98 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2b742982-febc-45bf-aa09-f85871492d45")
+	)
+	(wire
+		(pts
 			(xy 96.52 76.2) (xy 96.52 80.01)
 		)
 		(stroke
@@ -1042,13 +1025,13 @@
 	)
 	(wire
 		(pts
-			(xy 127 66.04) (xy 129.54 66.04)
+			(xy 113.03 66.04) (xy 116.84 66.04)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "44f2092c-db8e-4b15-b61f-21744a657945")
+		(uuid "4e3a8635-1dad-4f87-9436-d0a8e3868b24")
 	)
 	(bus
 		(pts
@@ -1062,16 +1045,6 @@
 	)
 	(wire
 		(pts
-			(xy 90.17 50.8) (xy 90.17 52.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6388d27f-a286-4240-adc2-3277133ffd63")
-	)
-	(wire
-		(pts
 			(xy 72.39 76.2) (xy 72.39 68.58)
 		)
 		(stroke
@@ -1082,13 +1055,43 @@
 	)
 	(wire
 		(pts
-			(xy 90.17 36.83) (xy 90.17 43.18)
+			(xy 78.74 43.18) (xy 82.55 43.18)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "72e47b9e-2222-4baf-a440-1b0f728902c0")
+		(uuid "731e66d3-3cdf-4f5a-80b2-a5e93f1dd893")
+	)
+	(wire
+		(pts
+			(xy 82.55 52.07) (xy 82.55 54.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "84614d23-b42e-408e-a065-1225c0aeb9fa")
+	)
+	(wire
+		(pts
+			(xy 113.03 66.04) (xy 113.03 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "945dc644-7886-43d6-98a2-2561982bedd0")
+	)
+	(wire
+		(pts
+			(xy 124.46 66.04) (xy 129.54 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "94b6bb35-b30c-4299-95a5-c5662c065073")
 	)
 	(wire
 		(pts
@@ -1122,16 +1125,6 @@
 	)
 	(wire
 		(pts
-			(xy 93.98 52.07) (xy 93.98 55.88)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c611196d-73b0-4f8a-9e5d-f40e913368f9")
-	)
-	(wire
-		(pts
 			(xy 129.54 46.99) (xy 129.54 50.8)
 		)
 		(stroke
@@ -1152,7 +1145,17 @@
 	)
 	(wire
 		(pts
-			(xy 109.22 66.04) (xy 116.84 66.04)
+			(xy 82.55 43.18) (xy 82.55 44.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d87de924-0afc-4bbe-9ae6-f944695d1a79")
+	)
+	(wire
+		(pts
+			(xy 109.22 66.04) (xy 113.03 66.04)
 		)
 		(stroke
 			(width 0)
@@ -1200,26 +1203,6 @@
 		)
 		(uuid "f782f78d-9b18-46e1-8f19-81b1fe96c70d")
 	)
-	(wire
-		(pts
-			(xy 82.55 52.07) (xy 90.17 52.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f7d209b5-8ebe-432d-b266-632167d3be8a")
-	)
-	(wire
-		(pts
-			(xy 90.17 52.07) (xy 93.98 52.07)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fd80074b-7c33-4886-ae5d-604303ba4e7b")
-	)
 	(label "SCL"
 		(at 63.5 60.96 0)
 		(fields_autoplaced yes)
@@ -1265,13 +1248,13 @@
 		(uuid "cf091a46-ac1a-45d5-8d24-eaabc8593d0e")
 	)
 	(label "GND"
-		(at 90.17 36.83 0)
+		(at 82.55 54.61 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
 		(uuid "e0e17431-8baa-481b-bdab-78f38b955be0")
 	)
@@ -1301,7 +1284,7 @@
 	)
 	(hierarchical_label "+5V"
 		(shape input)
-		(at 82.55 52.07 180)
+		(at 78.74 43.18 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1336,102 +1319,33 @@
 		(uuid "e82d829e-c4b0-4cea-bc0c-274c621a26e4")
 	)
 	(symbol
-		(lib_id "Jumper:Jumper_2_Bridged")
-		(at 121.92 66.04 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "09229f77-742c-45a5-90a4-719bcf2f0400")
-		(property "Reference" "JP8"
-			(at 126.238 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "Jumper"
-			(at 121.92 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
-			(at 121.92 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 121.92 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Jumper, 2-pole, closed/bridged"
-			(at 121.92 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "111ab48b-6586-412a-8428-dcd322014db8")
-		)
-		(pin "2"
-			(uuid "48db3fcf-0925-46e4-8c85-3f737adb322e")
-		)
-		(instances
-			(project "Tracker"
-				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85/5d9555c7-4fd3-4187-a03c-c3d0cf6806ca"
-					(reference "JP8")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C")
-		(at 90.17 46.99 0)
+		(lib_id "Device:R")
+		(at 120.65 66.04 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "22a57896-95cb-4980-81c1-b1e34ca9091b")
-		(property "Reference" "C20"
-			(at 88.138 53.086 90)
+		(fields_autoplaced yes)
+		(uuid "194b1358-9fdd-4571-97b4-a373ddba0ca7")
+		(property "Reference" "R18"
+			(at 120.65 59.69 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
-		(property "Value" "100nF"
-			(at 88.138 44.704 90)
+		(property "Value" "0"
+			(at 120.65 62.23 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
-			(at 91.1352 50.8 0)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 120.65 67.818 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1440,7 +1354,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 90.17 46.99 0)
+			(at 120.65 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1449,7 +1363,76 @@
 			)
 		)
 		(property "Description" ""
-			(at 90.17 46.99 0)
+			(at 120.65 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "8b3cc952-bbdf-49d3-b1ae-1c12a1eb6592")
+		)
+		(pin "2"
+			(uuid "9e4fe7a8-9c43-4a27-a2e8-0ac917177703")
+		)
+		(instances
+			(project "Tracker"
+				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85/5d9555c7-4fd3-4187-a03c-c3d0cf6806ca"
+					(reference "R18")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 82.55 48.26 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "22a57896-95cb-4980-81c1-b1e34ca9091b")
+		(property "Reference" "C20"
+			(at 83.82 50.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF"
+			(at 84.074 45.466 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
+			(at 83.5152 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 82.55 48.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 82.55 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1467,6 +1450,71 @@
 			(project "Tracker"
 				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85/5d9555c7-4fd3-4187-a03c-c3d0cf6806ca"
 					(reference "C20")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint")
+		(at 113.03 69.85 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "283e0c51-d4ac-4bf5-8d96-6955b1928375")
+		(property "Reference" "T19"
+			(at 113.03 77.216 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TP"
+			(at 110.49 73.152 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+			(at 107.95 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 107.95 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point"
+			(at 113.03 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "30866279-52b0-4111-864e-8bc19d124c79")
+		)
+		(instances
+			(project "Tracker"
+				(path "/60c5e70b-bc37-4402-aa86-9378cecb8f85/5d9555c7-4fd3-4187-a03c-c3d0cf6806ca"
+					(reference "T19")
 					(unit 1)
 				)
 			)
@@ -1498,7 +1546,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_SO:TSSOP-8_3x3mm_P0.65mm"
+		(property "Footprint" "Package_SO:SO-8_5.3x6.2mm_P1.27mm"
 			(at 96.52 78.74 0)
 			(effects
 				(font
@@ -1655,7 +1703,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Crystal:Crystal_AT310_D3.0mm_L10.0mm_Horizontal"
+		(property "Footprint" "Crystal:Crystal_SMD_3215-2Pin_3.2x1.5mm"
 			(at 77.47 76.2 0)
 			(effects
 				(font
@@ -1708,7 +1756,7 @@
 		(fields_autoplaced yes)
 		(uuid "f7b0fa24-7da0-4926-ba73-3caf9a24e947")
 		(property "Reference" "R52"
-			(at 132.08 60.96 0)
+			(at 132.08 60.9599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1716,8 +1764,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "270"
-			(at 132.08 63.5 0)
+		(property "Value" "330"
+			(at 132.08 63.4999 0)
 			(effects
 				(font
 					(size 1.27 1.27)

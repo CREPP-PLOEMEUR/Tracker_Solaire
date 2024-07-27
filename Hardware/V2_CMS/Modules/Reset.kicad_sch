@@ -723,7 +723,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm_H8mm"
+		(property "Footprint" "Button_Switch_SMD:SW_Push_1P1T_NO_CK_KSC7xxJ"
 			(at 78.74 60.96 0)
 			(effects
 				(font
@@ -773,7 +773,8 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x02_Pin")
-		(at 60.96 58.42 0)
+		(at 60.96 60.96 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -781,7 +782,7 @@
 		(dnp no)
 		(uuid "beba46e1-25a3-47ae-97c2-c89b16c70331")
 		(property "Reference" "J11"
-			(at 59.69 60.9601 0)
+			(at 59.69 58.4199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -789,8 +790,8 @@
 				(justify right)
 			)
 		)
-		(property "Value" "USR_BTN"
-			(at 59.69 58.4201 0)
+		(property "Value" "RST_BUTTON"
+			(at 59.69 60.9599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -799,7 +800,7 @@
 			)
 		)
 		(property "Footprint" "TerminalBlock_Phoenix:TerminalBlock_Phoenix_MPT-0,5-2-2.54_1x02_P2.54mm_Horizontal"
-			(at 60.96 58.42 0)
+			(at 60.96 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -808,7 +809,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 60.96 58.42 0)
+			(at 60.96 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -817,7 +818,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 60.96 58.42 0)
+			(at 60.96 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)

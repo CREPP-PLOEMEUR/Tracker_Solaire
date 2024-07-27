@@ -10,7 +10,8 @@
 
 // init des paramètres
 
-ElevationMotor::ElevationMotor(uint8_t enaPin, uint8_t inAPin, uint8_t inBPin, uint8_t anaVerinPin) {
+ElevationMotor::ElevationMotor(uint8_t enaPin, uint8_t inAPin, uint8_t inBPin, uint8_t anaVerinPin) 
+{
   _enaPin =  enaPin;
   _inAPin =  inAPin;
    _inBPin = inBPin;
@@ -26,7 +27,8 @@ ElevationMotor::ElevationMotor(uint8_t enaPin, uint8_t inAPin, uint8_t inBPin, u
 
 }
 
-float ElevationMotor::getLongVerin() {
+float ElevationMotor::getLongVerin() 
+{
   uint16_t valeurLue = analogRead(_anaVerinPin);
   float tension = valeurLue * (4.4 / 1023.0);
   float longeur = PistonMin + (tension / tensionMax) * (PistonMax - PistonMin);

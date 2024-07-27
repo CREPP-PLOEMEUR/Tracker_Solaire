@@ -10,14 +10,14 @@
 
 //#include "ElevationMotor.h"
 
-//#include "AzimutMotor.h"
+#include "AzimutMotor.h"
+
 
 #include "Settings.h"
 
-#include "NeoTracker.h"
 #include "Display.h"
 #include "ADC_Tools.h"
-//#include "ConnectionPins.h"
+#include "ConnectionPins.h"
 
 #include "SunTracker.h"
 #include "GNSS_Coordinates.h"
@@ -28,6 +28,8 @@
 #define CHANNEL_POT 1
 
 
+//ElevationMotor ElevMotor(elevEnable, elevIN_A, elevIN_B, elevPotar );
+AzimutMotor AzimMotor(tb66EnaPin,tb66PulsePin,tb66DirPin,tb66ButeePin);
 
 Display terminal(128,32, 0x3C);
 ADC_Tools adc;
@@ -37,20 +39,126 @@ SunTracker sunTracker(city);
 
 GNSS gnss(1, 0, 9600);
 
+/*!
+*/
+GNSS_Date gnss_date;
+GNSS_Time gnss_time;
+GNSS_Coordinates gnss_coordinates;
+
 
 
  void setup()
  {
 
+
+    delay(1000);
+
     pinMode(4,OUTPUT);
     pinMode(5,OUTPUT);
 
-    BLINK_EN_A;
+
+    pinMode(A1, INPUT);
+
 
     terminal.init();
     gnss.init();
+    gnss.addTerminal(&terminal);
 
-    terminal.println("Voltage : "+String(adc.getValue(CHANNEL_POT)));
+    terminal.println("Init");
+    //AzimMotor.disableDevice();
+    if(analogRead(A1)>512)
+    {
+
+      AzimMotor.returnToEst();
+      terminal.println("Est");
+    }
+    else
+    {
+       AzimMotor.returnToWest();
+       terminal.println("West");
+    }
+
+    //terminal.println("End_stop");
+    delay(1000);
+    terminal.println(String(AzimMotor.setAngle(90)));
+    AzimMotor.setDirection(DIRECTION_EST);
+    terminal.println(String(AzimMotor.setAngle(50)));
+
+    //terminal.println(String(AzimMotor.setAngle(145)));
+    //AzimMotor.returnToEst();
+    
+
+    
+    //delay(1000);
+    //AzimMotor.makeSteps(2000, DIRECTION_WEST);
+    //AzimMotor.returnToWest();
+    delay(1000);
+
+    //AzimMotor.makeSteps(2000, DIRECTION_EST);
+    delay(1000);
+    //AzimMotor.makeSteps(1000, 0);
+    //AzimMotor.makeSteps(1000, 0);
+    BLINK_EN_A;
+    BLINK_EN_B;
+    //AzimMotor.makeSteps(1000, 0);
+    //AzimMotor.retourOuest();
+    terminal.println("Fin retour");
+    delay(2000);
+    //AzimMotor.returnToWest();
+    terminal.println("50");
+    
+
+    //Read Data
+    BLINK_EN_A;
+    delay(1000);
+
+    gnss.readData();
+    gnss_date = gnss.getDate();
+
+    while(gnss_date.year == 0)
+    {
+      gnss.readData();
+      delay(10);
+      gnss_date = gnss.getDate();
+    }
+    terminal.println("DATE");
+
+    while( (gnss_time.hour == 0) || (gnss_time.minute == 0))
+    {
+      gnss.readData();
+      gnss_time = gnss.getTime();
+    }
+    terminal.println("TIME");
+    terminal.println(String(gnss_date.day)+"/"+String(gnss_date.month)+"/"+String(gnss_date.year)+" - "+ String(gnss_time.hour)+":"+String(gnss_time.minute));
+
+
+
+
+    //Position OK
+
+    
+    // bool isReady = false;
+
+
+    // while( isReady == false)
+    // {
+    //   gnss.readData();
+    //   isReady = gnss.isReady();
+    //   BLINK_EN_A;
+    //   delay(1000);
+    //   BLINK_EN_A;
+    //   delay(1000);
+    //   BLINK_EN_A;
+    //   delay(1000);
+    //   BLINK_EN_B;
+    //   delay(200);
+    //   BLINK_EN_A;
+    //   delay(500);
+    // }   
+    // gnss_coordinates = gnss.getCoordinates();
+
+    // terminal.println(String(gnss_coordinates.latitude,5)+String(gnss_coordinates.latitudeDirection));
+    // terminal.println(String(gnss_coordinates.longitude,5)+String(gnss_coordinates.longitudeDirection));
   
 
  }
@@ -58,19 +166,11 @@ GNSS gnss(1, 0, 9600);
  void loop()
  {
 
-    gnss.readData();
+    
 
-    GNSS_Date date = gnss.getDate();
-    GNSS_Coordinates coord = gnss.getCoordinates();
-    GNSS_Time timeGNSS = gnss.getTime();
+    //delay(500);
 
-    terminal.clear();
-    terminal.println(String(date.day)+"/"+String(date.month)+"/"+String(date.year)+" - "+ String(timeGNSS.hour)+":"+String(timeGNSS.minute));
-    terminal.println(String(coord.latitude,5)+String(coord.latitudeDirection));
-    terminal.println(String(coord.longitude,5)+String(coord.longitudeDirection));
-   
-    delay(1000);
-    BLINK_EN_A;
+    //BLINK_EN_A;
  }
 
 

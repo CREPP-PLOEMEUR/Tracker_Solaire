@@ -4,282 +4,245 @@
 // initialisation des paramètres
 //  AzimutMotor::AzimutMotor(int enaPin, int pulsePin, int dirPin, int pas_tours, int reduction, int buteePin, float anglebutee,float angleMax) {
    // AzimutMotor(int enaPin, int pulsePin, int dirPin, int pas_tours, int reduction, int buteePin, float anglebutee,float angleMax);
-AzimutMotor::AzimutMotor(uint8_t enaPin, uint8_t pulsePin, uint8_t dirPin, uint8_t buteePin){
-  _enaPin = enaPin;
+AzimutMotor::AzimutMotor(uint8_t enablePin, uint8_t pulsePin, uint8_t directionPin, uint8_t endStopSensorPin)
+{
+  _enablePin = enablePin;
   _pulsePin = pulsePin;
-  _dirPin = dirPin;
-  _buteePin = buteePin;
+  _directionPin = directionPin;
+  _endStopSensorPin = endStopSensorPin;
 
-  pinMode(_enaPin, OUTPUT);
-  pinMode(_pulsePin, OUTPUT);
-  pinMode(_dirPin, OUTPUT);
-  pinMode(_buteePin, INPUT);
+  pinMode(this->_enablePin, OUTPUT);
+  pinMode(this->_pulsePin, OUTPUT);
+  pinMode(this->_directionPin, OUTPUT);
+  pinMode(this->_endStopSensorPin, INPUT);
 
-  // valeurs dans le .h
+
+  this->_realAngle = MIN_ANGLE;
+  this->_realStep = 0;
+
   _anglebutee = AngButee; // direction en butéee - dépend de la came- 50° est 
   _anglemax = AngMax; 
   _pas_tours = PasParTour;
   _reduction = Reduction;
 
 
-  _pascourant = 0; // pas mémorisisé du pas, pas=0 -> butéé
-  _anglecourant = _anglebutee; // angle mémorisé par rapport au 50° est
-  _pasMax = (_anglemax - _anglebutee) * _pas_tours * _reduction / 360.0; // calculé : ( 310-50) * pas * reduction / 360
+  //_pasMax = (_anglemax - _anglebutee) * _pas_tours * _reduction / 360.0; // calculé : ( 310-50) * pas * reduction / 360
 
-
-
-   digitalWrite(_enaPin, HIGH); // desactive le TB6600 - économies d'énergie 
-  
+  this->disableDevice();
+   
   
 };
 
-  // attente utilisant micros()  qui reset toutes les 2^32 microsecondes
-  // remplace delaymicrosecondes(int durée)
-void AzimutMotor::usWait(uint32_t duree) {
-  // micros reinitialise à 2^32 -  4294967296, donc 2*32-1  doit être la date de fin
-  // 
-  if (4294967295-micros() < duree) {
-    while (micros() < 1000000) {
-      // on attend le passage par 0
-    int nop=1;
+void AzimutMotor::enableDevice()
+{
+  digitalWrite(this->_enablePin, HIGH);
+  this->usWait(this->_duration); 
+}
+void AzimutMotor::disableDevice()
+{
+  digitalWrite(_enablePin, LOW);
+  //this->usWait(this->_duration); 
+}
+
+void AzimutMotor::usWait(uint32_t duration) 
+{
+  // Reset at 2^32 = 4294967296
+  if (4294967295-micros() < duration) {
+    while (micros() < 1000000) 
+    {
+      int nop = 1;
     }
   } 
-  unsigned long my_micros = micros()+duree;
-  while (micros() < my_micros) {
-    int nop=1;
+  unsigned long my_micros = micros()+duration;
+  while (micros() < my_micros) 
+  {
+    int nop = 1;
   }
 
 }
 
+void AzimutMotor::setDirection(bool direction)
+{
+  this->_direction = direction;
+
+  digitalWrite(this->_directionPin, direction);
+  this->usWait(this->_duration); 
+
+}
+
+
+bool AzimutMotor::endStopDetected()
+{
+  if (digitalRead(this->_endStopSensorPin) == END_STOP_DETECTED) 
+  {
+    this->disableDevice();
+    return true;
+
+  }
+}
 // privées
-// a tester avec des boutons ou un potentiometre
-int AzimutMotor::versOuest(int nombre) {
-  int pasfaits=0;
-  // Set the spinning direction clockwise:
-  digitalWrite(_dirPin, HIGH);
-  usWait(_duration); // delai entre le changement de dir et le train de pulse
 
-  digitalWrite(_enaPin, LOW);
-  usWait(_duration); // delai entre le changement de dir et le train de pulse
-
-   for (int i = 0; i < nombre; i++) {
-    // on sort si on atteint la butee
-    if (digitalRead(_buteePin) == LOW) break;
-    // These four lines result in 1 step:
-    
-    digitalWrite(_pulsePin, HIGH);
-    usWait(_duration);
-    digitalWrite(_pulsePin, LOW);
-    usWait(_duration);
-    pasfaits += 1;
+uint16_t AzimutMotor::setAngle(uint16_t angle)
+{
+  uint16_t targetAngle = angle;
+  if (angle <= MIN_ANGLE) 
+  { 
+      targetAngle = MIN_ANGLE;
+  }
+  else if ( angle >= MAX_ANGLE ) {
+      targetAngle = MAX_ANGLE;
+  }
+  else {
    
   }
-   digitalWrite(_enaPin, HIGH);
-   return(pasfaits);
-}
-
-int AzimutMotor::versEst(int nombre) {
-  int pasfaits=0;
-  
-  // Set the spinning direction counter clockwise:
-  digitalWrite(_dirPin, LOW);
-  usWait(_duration); // delai entre le changement de dir et le train de pulse
-
-  digitalWrite(_enaPin, LOW);
-  usWait(_duration); // delai entre le changement de dir et le train de pulse
-
-   for (int i = 0; i < nombre; i++) {
-      // on sort si on atteint la butee
-    if (digitalRead(_buteePin) == LOW) break;
-    // These four lines result in 1 step:
-    digitalWrite(_pulsePin, HIGH);
-    usWait(_duration);
-    digitalWrite(_pulsePin, LOW);
-    usWait(_duration);
-    pasfaits += 1;
-    
-
-  }
- digitalWrite(_enaPin, HIGH);
- return(pasfaits);
-}
-
-// positionne le nouvel azimut en absolu - sens horaire - limites 50 à 310°, donne l'angle atteint    
-float AzimutMotor::setAngle(float angle){
-  int pasAFaire=0;
-  int ret=0;
-  float angleAFaire=_anglecourant;
-
-  Serial.print("Pas max"); 
-  Serial.println(_pasMax);
-
-  Serial.print(" Angle courant ") ;
-  Serial.print(_anglecourant,2);
-
-  Serial.print("      angle demandés ") ;
-  Serial.print(angle,2);
-  Serial.print(" \t");
-
-  // bornage des angles
-  
-  if (angle <= _anglebutee) { 
-      angleAFaire = _anglebutee;
-      }
-  else if ( angle >= _anglemax ) {
-      angleAFaire = _anglemax;
-  }
-  else {
-    angleAFaire = angle;
-  }
-  Serial.print(" angle possible avant butées \t") ;
-  Serial.println(angleAFaire);
 
   // calcul du nombre de steps du moteur
-  pasAFaire = (angleAFaire - _anglecourant) * _pas_tours * _reduction / 360;
-  Serial.print(" à faire ");
-  Serial.println(pasAFaire);
+  int16_t steps_A = int(targetAngle - this->_realAngle) * STEP_PER_TOUR ;
+  uint16_t stepTarget = int(float(steps_A) /360.0) * MECHANICAL_GEAR_RATIO;
 
-  // on est dans les limites donc a priori le retour importe peu
-  // ça peut prendre un peu de temps - on n'est pas multitache
-  ret=tournePas(pasAFaire);
-  // nouvelle valeur courante
-  _anglecourant = angleAFaire;
-  return angleAFaire;
-
-};
-
-// tourne de x steps par rapport à la position courante en positif (W) ou negatif (E), 
-// s'arrête si le compteur atteint les butées 0 (50°) ou _pasMax (310°)
-int AzimutMotor::tournePas(int step){
-  int nbsteps=0;
-  Serial.print(" tournePas \t") ;
-  Serial.print(" pas demandés ") ;
-  Serial.print(step);
-  Serial.print(" \t");
-
-  /* * /
-  if (futurstep <=0) {
-    // pas plus loin que la butée
-    versEst(_pascourant);
-    _pascourant = 0;
-    _anglecourant = _anglebutee;
-    }
-
-  else if (futurstep >= _pasMax) {
-    // pas plus loin que l'angle max
-    futurstep = _pasMax - _pascourant;
-    versOuest(futurstep);
-    _anglecourant = _anglemax;
-    _pascourant = _pasMax;
-    }
-  else if ( step < 0) {
-    versEst( 0 - step);
-    _pascourant += step;
-    _anglecourant +=  360 * step / (_pas_tours * _reduction);
-    }
-
-  else {
-      versOuest( step);
-    _pascourant += step;
-    _anglecourant +=  360 * step / (_pas_tours * _reduction);
-    }
+  this->enableDevice();
+  if (stepTarget < 0) 
+  {
+    this->makeSteps(abs(stepTarget), DIRECTION_WEST);
+    this->_realAngle = targetAngle;
+    this->_realStep += abs(stepTarget);
+  }
+  else 
+  {
+    this->makeSteps(abs(stepTarget), DIRECTION_EST);
+    this->_realAngle = targetAngle;
+    this->_realStep += abs(stepTarget);
+  }
+  this->disableDevice();
     /**/
-    if ( step < 0) {
-    nbsteps=versEst(0 - step);
-    _pascourant -= nbsteps;
-    _anglecourant -=  360 * nbsteps / (_pas_tours * _reduction);
-    }
+    return stepTarget;
+}
 
-  else {
-    nbsteps=versOuest( step);
-    _pascourant += nbsteps;
-    _anglecourant +=  360 * nbsteps / (_pas_tours * _reduction);
-    }
-    /**/
+
+void AzimutMotor::makeStep()
+{
+    digitalWrite(this->_pulsePin, HIGH);
+    this->usWait(this->_duration);
+    digitalWrite(this->_pulsePin, LOW);
+    this->usWait(this->_duration);
+}
+
+int AzimutMotor::makeSteps(uint32_t steps, bool direction) 
+{
+  uint32_t stepDone=0;
+  // Set the spinning direction clockwise:
+
+  this->enableDevice();
+  this->usWait(this->_duration); 
+
+  this->setDirection(direction);
+  this->usWait(this->_duration); 
+  
+   for (int i = 0; i < steps; i++) {
+
+   /* if(this->endStopDetected() == true) 
+    {
+      break;
+    }*/
+    this->makeStep();
+    stepDone += 1;
+   
+  }
+   this->disableDevice();
+   return stepDone;
+}
+
+
+
+int AzimutMotor::returnToEst()
+{
+
+  uint8_t endStopValue = digitalRead(this->_endStopSensorPin);
+
+  if (endStopValue == END_STOP_NO_DETECTED) 
+  {
     
-    Serial.println(_anglecourant,2);
+    this->setDirection(DIRECTION_EST);
+    this->enableDevice();
+
+    while (digitalRead(this->_endStopSensorPin) != END_STOP_DETECTED) 
+    {
+      this->makeStep();
+    }
+    
+    this->setDirection(DIRECTION_WEST);
+
+    while (digitalRead(this->_endStopSensorPin) == END_STOP_DETECTED) 
+    {
+      this->makeStep();
+    }
+
+    this->disableDevice();
+  }
+  else 
+  {
+    this->setDirection(DIRECTION_WEST);
+    this->enableDevice();
+
+    while (digitalRead(this->_endStopSensorPin) == END_STOP_DETECTED) 
+    {
+      this->makeStep();
+    }
+    this->disableDevice();
+
+  }//End else
+
+  this->disableDevice();
+  this->_realAngle = MIN_ANGLE;
+  //_pascourant = 0;
+
   return 0;
 };
 
-// donne le pas courant
-int AzimutMotor::getPas(){
-  Serial.print(" getPas :") ;
-  Serial.println(_pascourant);
-  return _pascourant;
-};
 
-// donne l'angle courant
-float AzimutMotor::getAngle(){
-    Serial.print(" getAngle :") ;
-    Serial.println(_anglecourant);
-  return _anglecourant; 
-};
 
-// retourne en butée à l'est
-int AzimutMotor::retourEst(){
-  int butee = digitalRead(_buteePin);
-  Serial.print(" retourEst : \t") ;
+int AzimutMotor::returnToWest()
+{
 
-  // Butée = LOW => contact 
-  if (butee == HIGH) {
-    // pas en contact
-    Serial.print(" OK pour retour vers l'est donc : \t") ;
-    Serial.flush();
-    // on est du bon coté
-    // activer la direction est
-    digitalWrite(_dirPin, LOW);
-    usWait(_duration); // delai entre le changement de dir et le train de pulse
+    uint8_t endStopValue = digitalRead(this->_endStopSensorPin);
 
-    digitalWrite(_enaPin, LOW);
-    usWait(_duration); 
-    while (digitalRead(_buteePin) != LOW) {
-      // un step a la fois)
-      digitalWrite(_pulsePin, HIGH);
-      usWait(_duration);
-      digitalWrite(_pulsePin, LOW);
-      usWait(_duration);
+  if (endStopValue == END_STOP_NO_DETECTED) 
+  {
+    
+    this->setDirection(DIRECTION_WEST);
+    this->enableDevice();
+
+    while (digitalRead(this->_endStopSensorPin) != END_STOP_DETECTED) 
+    {
+      this->makeStep();
     }
-    // on ressort de la
-    while (digitalRead(_buteePin) == LOW) {
-      digitalWrite(_dirPin, HIGH);
-      usWait(_duration);
+    
+    this->setDirection(DIRECTION_EST);
 
-      digitalWrite(_pulsePin, HIGH);
-      usWait(_duration);
-      digitalWrite(_pulsePin, LOW);
-      usWait(_duration);
+    while (digitalRead(this->_endStopSensorPin) == END_STOP_DETECTED) 
+    {
+      this->makeStep();
     }
-    // et on désactive
-    digitalWrite(_enaPin, HIGH);
-  }
-  else {
-    // butée = LOW
-    // on est au contact ou sur la butée, on avance vers louest un peu
-    Serial.print(" trop loin -  l'ouest donc : \t") ;
-    Serial.flush();
 
-    // on est passé trop au nord
-    // on va tourner vers l'ouest jusque"a ce que ca remonte
-    digitalWrite(_dirPin, HIGH);
-    usWait(_duration); // delai entre le changement de dir et le train de pulse
-
-    digitalWrite(_enaPin, LOW);
-    usWait(_duration); 
-    while (digitalRead(_buteePin) != HIGH) {
-      // un step a la fois)
-      digitalWrite(_pulsePin, HIGH);
-      usWait(_duration);
-      digitalWrite(_pulsePin, LOW);
-      usWait(_duration);
-      
-      }
-    // et on désactive
-    digitalWrite(_enaPin, HIGH);
+    this->disableDevice();
   }
-  _anglecourant = _anglebutee;
-  _pascourant = 0;
-  Serial.println(" en butée ") ;
-  Serial.flush();
+  else 
+  {
+    this->setDirection(DIRECTION_EST);
+    this->enableDevice();
+
+    while (digitalRead(this->_endStopSensorPin) == END_STOP_DETECTED) 
+    {
+      this->makeStep();
+    }
+    this->disableDevice();
+
+  }//End else
+
+  this->disableDevice();
+  this->_realAngle = MIN_ANGLE;
+  this->_realStep = 0;
+
   return 0;
 };
 

@@ -55,7 +55,7 @@ void AzimutMotor::usWait(uint32_t duree) {
 // a tester avec des boutons ou un potentiometre
 int AzimutMotor::versOuest(int nombre) {
   int pasfaits=0;
-  // Set the spinning direction clockwise:
+  // Set the spinning direction clockwise: 
   digitalWrite(_dirPin, HIGH);
   usWait(_duration); // delai entre le changement de dir et le train de pulse
 

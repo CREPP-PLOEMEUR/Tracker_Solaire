@@ -4346,7 +4346,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "../../../Electronique/Kicad/Motor_Control/Motor_Control.kicad_sch"
+		(property "Sheetfile" "Modules/Motor_Control.kicad_sch"
 			(at 176.53 133.9346 0)
 			(effects
 				(font
