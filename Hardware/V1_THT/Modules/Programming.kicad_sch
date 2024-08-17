@@ -690,17 +690,6 @@
 		)
 		(uuid "71b66adc-a3b6-4bf0-881c-00d9293dcf99")
 	)
-	(label "GND"
-		(at 52.07 71.12 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "7dd02e47-a79b-4286-965e-a57c0bdef59f")
-	)
 	(label "CLK"
 		(at 73.66 55.88 0)
 		(fields_autoplaced yes)
@@ -711,6 +700,17 @@
 			(justify left bottom)
 		)
 		(uuid "a441f4fe-5128-42e0-be0e-8af6dede3153")
+	)
+	(label "GND"
+		(at 52.07 71.12 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "a68566bc-fe10-43b6-9c78-56c04e528a88")
 	)
 	(label "MOSI"
 		(at 53.34 53.34 180)
@@ -734,18 +734,6 @@
 		)
 		(uuid "f7846b2d-e082-47c9-8f98-bc079fe7783c")
 	)
-	(hierarchical_label "AVR_SPI_+5V"
-		(shape output)
-		(at 53.34 55.88 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "01f37f5f-8a51-49a4-8b4d-380fc4f5166d")
-	)
 	(hierarchical_label "{SPI}"
 		(shape input)
 		(at 116.84 48.26 90)
@@ -768,7 +756,19 @@
 			)
 			(justify left)
 		)
-		(uuid "987d2516-471f-4c60-9918-b0b8d892a0b1")
+		(uuid "edcfc847-9e9c-4ee2-80c3-c8db7a2bfa3e")
+	)
+	(hierarchical_label "AVR_SPI_+5V"
+		(shape output)
+		(at 53.34 55.88 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f25eabec-56b3-4d06-bf7f-be602d60ef62")
 	)
 	(hierarchical_label "AVR_ISP_RST"
 		(shape bidirectional)

@@ -23849,11 +23849,11 @@
 	(footprint "MountingHole:MountingHole_3mm"
 		(layer "F.Cu")
 		(uuid "915b9c90-ed88-415e-a938-b4bf1b3081e1")
-		(at 196.19 32.13)
+		(at -14.65 74.77 -90)
 		(descr "Mounting Hole 3mm, no annular")
 		(tags "mounting hole 3mm no annular")
 		(property "Reference" "H3"
-			(at 1.36 5 0)
+			(at 1.36 5 90)
 			(layer "F.SilkS")
 			(hide yes)
 			(uuid "574eb4ee-62b8-4522-8758-c65a830fb6f5")
@@ -23865,7 +23865,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 0 4 0)
+			(at 0 4 90)
 			(layer "F.Fab")
 			(uuid "280d2128-1d2e-43e5-91d7-51082182e627")
 			(effects
@@ -23876,7 +23876,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3mm"
-			(at 0 0 0)
+			(at 0 0 -90)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -23888,7 +23888,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 0)
+			(at 0 0 -90)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -23900,7 +23900,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 0)
+			(at 0 0 -90)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -23939,7 +23939,7 @@
 			(uuid "3cbb2e9e-a908-470e-bec8-0d3732ce130e")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 0 0)
+			(at 0 0 90)
 			(layer "F.Fab")
 			(uuid "4ec808ff-f8d6-472f-8d62-6ce68bd7a981")
 			(effects
@@ -23950,11 +23950,22 @@
 			)
 		)
 		(pad "" np_thru_hole circle
-			(at 0 0)
+			(at 0 0 270)
 			(size 3 3)
 			(drill 3)
 			(layers "*.Cu" "*.Mask")
 			(uuid "08cd4d6e-906c-4d3c-b737-ff99baf7a357")
+		)
+		(model "/home/nico/Documents/Electronique/Kicad/Libraries_3D_Footprints/Steppers/TB6600/TB6600.STEP"
+			(offset
+				(xyz 0 0 20)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 90 0 0)
+			)
 		)
 	)
 	(footprint "HeatSink:HeastSink_MOSFET_15mm_10mm_20mm"
