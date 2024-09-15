@@ -5917,6 +5917,16 @@
 			"PJi9EEIIJc//B6Fm2dgWGO8DAAAAAElFTkSuQmCC"
 		)
 	)
+	(text "MUST BE REPLACED By BSS"
+		(exclude_from_sim no)
+		(at 200.406 155.702 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "1f1e5634-980b-4307-9f46-76c4ff70b1bd")
+	)
 	(text "V_{RX}=5*${a52a78e2-18e3-4ec6-8d46-591b24bd5bd1:VALUE}/(${a52a78e2-18e3-4ec6-8d46-591b24bd5bd1:VALUE}+${f5d83104-4b79-4b80-ade9-bfd7c6659042:VALUE})"
 		(exclude_from_sim no)
 		(at 69.85 146.304 0)

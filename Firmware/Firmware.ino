@@ -215,13 +215,14 @@ void setup()
 }
 
 void loop() {
+  
+  
+
+  //gnss.readData();
 
 
-  gnss.readData();
-
-
-  if(gnss.isValidPosition())
-  {
+  //if(gnss.isValidPosition())
+ // {
     
     //Serial.println("COORDINATES FOUND !");
 
@@ -231,7 +232,7 @@ void loop() {
     Serial.println(String(gnss.getTime().hour)+":"+String(gnss.getTime().minute));
 
     sunTracker.setLocalisation(gnss.getCoordinates());
-*/
+
 
 
     sunTracker.update(sunTracker.convertDayInRank(gnss.getDate()), {gnss.getTime().hour,gnss.getTime().minute});
@@ -263,5 +264,5 @@ void loop() {
 //gnss.simulate();
   //gnss.readData();
   //delay(1000);
-
+*/
 }

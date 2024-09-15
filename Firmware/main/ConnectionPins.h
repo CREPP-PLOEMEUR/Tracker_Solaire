@@ -9,7 +9,8 @@ uint8_t myGPS_RX=1;  // broche RX pour l'arduino
 uint8_t myGPS_TX=0;  // broche TX pour l'arduino
 
 //eventuellement pour avoir des traces dans le gps
-//#define DEBUG_GPS
+//#define DEBUG_GP
+
 
 // pour le vérin d'élévation pint en H
 uint8_t elevEnable=5;   // broche Enable - output Active High

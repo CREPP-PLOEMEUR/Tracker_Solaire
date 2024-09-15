@@ -24,7 +24,9 @@ static NMEA_Source nmea_sources[NMEA_SOURCE_NUMBER] =
 
 GNSS::GNSS(GNSS_Pin_Rx rx_Pin, GNSS_Pin_Tx tx_Pin, GNSS_Baudrate gnss_baudrate) : _rx_Pin{rx_Pin}, _tx_Pin{tx_Pin}, _gnss_baudrate{gnss_baudrate}
 {
-    Serial.begin(_gnss_baudrate);
+
+   // _uartDevice.begin(_gnss_baudrate);
+   _uartDevice = new SoftwareSerial(rx_Pin, tx_Pin);
 }
 
 void GNSS::setDebugChannel(HardwareSerial *serial, unsigned long baudrate)
@@ -71,15 +73,15 @@ inline byte calculateChecksum(byte *data, int length) {
 void GNSS::init()
 {
 
-  Serial.begin(_gnss_baudrate);
+  _uartDevice->begin(_gnss_baudrate);
 
   byte ubxCommand[] = {0xB5,0x62,0x06,0x08,0x06,0x00,0xC8,0x00,0x01,0x00,0x01,0x00,0xDE,0x6A};
 
-    Serial.println("PUBX,41,1,3,3,38400,0");
-    Serial.write(ubxCommand, sizeof(ubxCommand));
+    _uartDevice->println("PUBX,41,1,3,3,38400,0");
+    _uartDevice->write(ubxCommand, sizeof(ubxCommand));
 
-    Serial.write(ubxCommand, sizeof(ubxCommand));
-    Serial.println(GNSS_setUpdateRate());
+    _uartDevice->write(ubxCommand, sizeof(ubxCommand));
+    _uartDevice->println(GNSS_setUpdateRate());
 
 }
 
@@ -91,12 +93,12 @@ void GNSS::addTerminal(Display *display)
 
 void GNSS::startGNSS()
 {
-  Serial.println(GNSS_MODULE_WAKE_UP);
+  _uartDevice->println(GNSS_MODULE_WAKE_UP);
 }
 
 void GNSS::stopGNSS()
 {
-  Serial.println(GNSS_MODULE_SLEEP);
+  _uartDevice->println(GNSS_MODULE_SLEEP);
 }
 
 
@@ -158,11 +160,11 @@ bool GNSS::readData(void)
     //Timout
     //_uartDebug->println("waiting data...");   
     //delay(1000);
-  }while(!Serial.available());
+  }while(!_uartDevice->available());
 
-  while (Serial.available()) {
+  while (_uartDevice->available()) {
 
-    char c = Serial.read();
+    char c = _uartDevice->read();
 
     if (c == m_nmea_settings.header) 
     {
@@ -180,7 +182,7 @@ bool GNSS::readData(void)
             if(error == false)
             {
               this->parseString(frame);   
-           //_uartDebug->println(frame);     
+              _uartDebug->println(frame);     
             }
             else {
              // _uartDebug->println("INVALIDE_ANSWER");

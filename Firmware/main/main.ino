@@ -4,12 +4,6 @@
 //#include "commonTypes.h"
 //#include "SunPos.h"
 
-#define BLINK_EN_A digitalWrite(4,1);delay(50);digitalWrite(4,0);
-#define BLINK_EN_B digitalWrite(5,1);delay(50);digitalWrite(5,0);
-
-
-//#include "ElevationMotor.h"
-
 #include "AzimutMotor.h"
 
 
@@ -23,6 +17,32 @@
 #include "GNSS_Coordinates.h"
 #include "GNSS_Time.h"
 #include "GNSS.h"                                                    
+#include <TinyGPSPlus.h>
+
+#include "PCA9536.h"
+
+#define BLINK_EN_A digitalWrite(4,1);delay(100);digitalWrite(4,0);delay(100);
+#define BLINK_EN_B digitalWrite(5,1);delay(100);digitalWrite(5,0);delay(100);
+
+
+#include <Wire.h>
+
+#include <Wire.h>
+#include <RTClib.h>
+// Création d'une instance TinyGPS++
+TinyGPSPlus gps;
+PCA9536 io_Extender;
+
+// Création d'une instance SoftwareSerial pour communiquer avec le module GPS
+SoftwareSerial ss(7,6); // RX, TX
+
+
+#define PCA9536_ADDRESS 0x41 // Adresse I2C du PCA9536D
+
+
+
+//#include "ElevationMotor.h"
+
 
 
 #define CHANNEL_POT 1
@@ -37,7 +57,10 @@ ADC_Tools adc;
 CityLocalisation city = {0,0, 0, 0};
 SunTracker sunTracker(city);
 
-GNSS gnss(1, 0, 9600);
+//GNSS gnss(7, 6, 9600);
+
+RTC_DS1307 rtc;
+
 
 /*!
 */
@@ -50,86 +73,101 @@ GNSS_Coordinates gnss_coordinates;
  void setup()
  {
 
+    Serial.begin(9600);
+    io_Extender.begin();
+    //
 
-    delay(1000);
+
+    Serial.println("INIT : OK");
+    ss.begin(9600);
+    terminal.init();
+    Wire.begin();  // Initialisation du bus I2C
 
     pinMode(4,OUTPUT);
     pinMode(5,OUTPUT);
 
 
-    pinMode(A1, INPUT);
-
-
-    terminal.init();
-    gnss.init();
-    gnss.addTerminal(&terminal);
-
-    terminal.println("Init");
-    //AzimMotor.disableDevice();
-    if(analogRead(A1)>512)
-    {
-
-      AzimMotor.returnToEst();
-      terminal.println("Est");
-    }
-    else
-    {
-       AzimMotor.returnToWest();
-       terminal.println("West");
-    }
-
-    //terminal.println("End_stop");
-    delay(1000);
-    terminal.println(String(AzimMotor.setAngle(90)));
-    AzimMotor.setDirection(DIRECTION_EST);
-    terminal.println(String(AzimMotor.setAngle(50)));
-
-    //terminal.println(String(AzimMotor.setAngle(145)));
-    //AzimMotor.returnToEst();
-    
-
-    
-    //delay(1000);
-    //AzimMotor.makeSteps(2000, DIRECTION_WEST);
-    //AzimMotor.returnToWest();
-    delay(1000);
-
-    //AzimMotor.makeSteps(2000, DIRECTION_EST);
-    delay(1000);
-    //AzimMotor.makeSteps(1000, 0);
-    //AzimMotor.makeSteps(1000, 0);
     BLINK_EN_A;
     BLINK_EN_B;
-    //AzimMotor.makeSteps(1000, 0);
-    //AzimMotor.retourOuest();
-    terminal.println("Fin retour");
-    delay(2000);
-    //AzimMotor.returnToWest();
-    terminal.println("50");
+
     
+   
+    //gnss.init();
+    // gnss.startGNSS();
+    //gnss.setDebugChannel(&Serial, 9600);
 
-    //Read Data
-    BLINK_EN_A;
-    delay(1000);
+    //configurePCA9536(0x00);
 
-    gnss.readData();
-    gnss_date = gnss.getDate();
+    //rtc.writeSqwPinMode(DS1307_SquareWave1HZ);
+    io_Extender.pinMode(PCA9536_PIN_0,PCA9536_OUTPUT);
 
-    while(gnss_date.year == 0)
-    {
-      gnss.readData();
-      delay(10);
-      gnss_date = gnss.getDate();
+    io_Extender.digitalWrite(PCA9536_PIN_0,PC9536_HIGH);
+
+    terminal.println("SELF-TEST : OK");
+    Serial.println("SELF-TEST : OK");
+    //writePCA9536(0x0F); // Met toutes les broches en état haut (HIGH)
+    delay(500);
+    io_Extender.digitalWrite(PCA9536_PIN_0,PC9536_LOW);
+    //writePCA9536(0x00); // Met toutes les broches en état bas (LOW)
+
+    delay(100);
+
+    Serial.println("RTC : OK");
+    rtc.begin();
+    delay(100);
+    rtc.writeSqwPinMode(DS1307_SquareWave1HZ); // Configurer pour une onde carrée de 1 Hz
+
+
+    terminal.println("WAITING GNSS..");
+
+    while (ss.available() > 0) {
+    gps.encode(ss.read()); // Transfert des données au parser TinyGPS++
+
+    // Si une nouvelle localisation est disponible
+    if (gps.location.isUpdated()) {
+      Serial.print("Latitude  : ");
+      Serial.println(gps.location.lat(), 6);
+      Serial.print("Longitude : ");
+      Serial.println(gps.location.lng(), 6);
     }
-    terminal.println("DATE");
 
-    while( (gnss_time.hour == 0) || (gnss_time.minute == 0))
-    {
-      gnss.readData();
-      gnss_time = gnss.getTime();
+    // Si une nouvelle information temporelle est disponible
+    if (gps.time.isUpdated()) {
+      Serial.print("Heure     : ");
+      Serial.print(gps.time.hour());
+      Serial.print(":");
+      Serial.print(gps.time.minute());
+      Serial.print(":");
+      Serial.println(gps.time.second());
     }
-    terminal.println("TIME");
-    terminal.println(String(gnss_date.day)+"/"+String(gnss_date.month)+"/"+String(gnss_date.year)+" - "+ String(gnss_time.hour)+":"+String(gnss_time.minute));
+
+    // Si une nouvelle altitude est disponible
+    if (gps.altitude.isUpdated()) {
+      Serial.print("Altitude  : ");
+      Serial.print(gps.altitude.meters());
+      Serial.println(" m");
+    }
+
+    // Si une nouvelle vitesse est disponible
+    if (gps.speed.isUpdated()) {
+      Serial.print("Vitesse   : ");
+      Serial.print(gps.speed.kmph());
+      Serial.println(" km/h");
+    }
+
+    Serial.println();
+  }
+
+  
+    // while( (gnss_time.hour == 0) || (gnss_time.minute == 0))
+    // {
+      
+    //   //gnss_time = gnss.getTime();
+    // }
+   //gnss.readData();
+    Serial.println("END");
+    //terminal.println("TIME");
+    //terminal.println(String(gnss_date.day)+"/"+String(gnss_date.month)+"/"+String(gnss_date.year)+" - "+ String(gnss_time.hour)+":"+String(gnss_time.minute));
 
 
 
@@ -166,13 +204,54 @@ GNSS_Coordinates gnss_coordinates;
  void loop()
  {
 
-    
+  static bool isRunning = false;
 
+    if(analogRead(A1)>800)
+    {
+      AzimMotor.enableDevice();
+      AzimMotor.makeSteps(400, DIRECTION_EST) ;
+      //terminal.println("Est");
+    }
+    else if(analogRead(A1)<200)
+    {
+      AzimMotor.enableDevice();
+       AzimMotor.makeSteps(400, DIRECTION_WEST) ;
+       //terminal.println("West");
+    }
+    else
+    {
+      AzimMotor.disableDevice();
+    }
     //delay(500);
 
     //BLINK_EN_A;
  }
 
+
+// void configurePCA9536(uint8_t config) {
+//   Wire.beginTransmission(PCA9536_ADDRESS);
+//   Wire.write(PCA9536_CONFIG);  // Sélection du registre de configuration
+//   Wire.write(config);          // Écrire la configuration (0x00 : toutes les broches en sortie)
+//   Wire.endTransmission();
+// }
+
+// // Fonction pour écrire des données sur le port de sortie du PCA9536
+// void writePCA9536(uint8_t value) {
+//   Wire.beginTransmission(PCA9536_ADDRESS);
+//   Wire.write(PCA9536_OUTPUT_PORT);  // Sélection du registre de sortie
+//   Wire.write(value);                // Écrire la valeur (0x0F pour activer toutes les broches)
+//   Wire.endTransmission();
+// }
+
+// Fonction pour lire l'état des broches d'entrée du PCA9536
+// uint8_t readPCA9536() {
+//   Wire.beginTransmission(PCA9536_ADDRESS);
+//   Wire.write(PCA9536_INPUT_PORT);  // Sélection du registre d'entrée
+//   Wire.endTransmission();
+
+//   Wire.requestFrom(PCA9536_ADDRESS, 1);
+//   return Wire.read();  // Lire l'état des broches
+// }
 
 
 /*
